@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="ui menu">
+  <div class="ui container">
+    <a href={% url 'home' %} class="header item">
+      <img class="logo" class="logo" src= {% static 'img/logo.png' %} />
+    </a>
+
+
+    <div class="right item">
+      {% if request.user.is_authenticated %}
+      <a class="ui primary button">Edit Profile</a>
+      <div class="ui item">
+        <a href="" class="ui primary button">Logout</a>
+        </div>
+      <div class="ui simple dropdown item">
+         User <i class="dropdown icon"></i>
+        <div class="menu">
+        <form class="ui large form" method="post" action="">
+
+          {% csrf_token %}
+         <input class="ui button"
+              type="submit"
+              value="Sign out"
+            />
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <div class="ui item">
+      <a href="{% url 'login' %}" class="ui primary button">Login</a>
+      </div>
+
+      <div class="ui item">
+      <a href="{% url 'register' %}" class="ui primary button">Register</a>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
