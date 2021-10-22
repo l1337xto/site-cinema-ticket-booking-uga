@@ -14,7 +14,17 @@ from django.utils.encoding import force_bytes, force_str, force_text, DjangoUnic
 from .utils import generate_token
 from django.core.mail import EmailMessage
 from django.conf import settings
+import threading
 
+######################Email with threading for faster response#########################################        
+class EmailThread(threading.Thread):
+    def __init__(self, email):
+        self.email=email
+        threading.Thread.__init__(self)
+    def run(self):
+        self.email.send()
+
+################################Send Activation Mail to User#########################################        
 def send_activation_email(request,user):
     domain_name = get_current_site(request)
     email_subject = 'Verify your account'
@@ -22,7 +32,9 @@ def send_activation_email(request,user):
     email_body = render_to_string('userauth/activation.html',context)
 
     email=EmailMessage(subject=email_subject, body=email_body, from_email = settings.EMAIL_FROM_USER, to=[user.email])
-    email.send()
+    EmailThread(email).start()
+
+
 @auth_user_should_not_access
 def register(request):
     if request.method == "POST":
@@ -59,7 +71,7 @@ def register(request):
         user.save()
 
         send_activation_email(request,user)
-        messages.add_message(request,messages.SUCCESS,'User account created successfully')
+        messages.add_message(request,messages.SUCCESS,'User account created successfully, verify your email address to log in')
         return redirect('login')
     return render(request,'userauth/register.html')
 
