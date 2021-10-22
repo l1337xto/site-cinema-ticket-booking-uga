@@ -23,33 +23,55 @@ Create an account
             {% csrf_token %}
             <div class="ui stacked segment">
               <div class="field">
-                <div class="ui left icon input">
+                <h5> * required fields</h5>
+                <div class="ui labeled input">
                   <i class="user icon"></i>
-                  <input type="text" name="username" value="{{data.username}}"  placeholder="Username" />
+                  <div class="ui label">
+                    <h4>Username</h4>
+                  </div>
+                  <input type="text" name="username" value="{{data.username}}"  placeholder="Used as a login credential" />
+                  <div class="ui right corner label">
+                    <i class="asterisk icon"></i>
+                  </div>
                 </div>
               </div>
   
               <div class="field">
-                <div class="ui left icon input">
+                <div class="ui labeled input">
                   <i class="user icon"></i>
-                  <input type="text" name="email" value="{{data.email}}" placeholder="E-mail address" />
+                  <div class="ui label">
+                    <h4>E-mail ID</h4>
+                  </div>
+                  <input type="text" name="email" value="{{data.email}}" placeholder="Used for verification" />
+                  <div class="ui right corner label">
+                    <i class="asterisk icon"></i>
+                  </div>
                 </div>
               </div>
+
               <div class="field">
-                <div class="ui left icon input">
+                <div class="ui labeled input">
                   <i class="lock icon"></i>
-                  <input type="password" name="password" placeholder="Password" />
+                  <div class="ui label">
+                    <h4>Password</h4>
+                  </div>
+                  <input type="password" name="password" placeholder="Used as a login credential" />
+                  <div class="ui right corner label">
+                    <i class="asterisk icon"></i>
+                  </div>
                 </div>
               </div>
   
               <div class="field">
-                <div class="ui left icon input">
+                <div class="ui labeled input">
                   <i class="lock icon"></i>
-                  <input
-                    type="password"
-                    name="password2"
-                    placeholder="Repeat Password"
-                  />
+                  <div class="ui label">
+                    <h4>Password</h4>
+                  </div>
+                  <input type="password" name="password2" placeholder="Repeat Password" />
+                  <div class="ui right corner label">
+                    <i class="asterisk icon"></i>
+                  </div>
                 </div>
               </div>
               <button class="ui fluid large teal submit button">Submit</button>

@@ -1,0 +1,7 @@
+{% autoescape off%}
+
+Hi {{user.username}}
+Please use this link below to verify your account with CES Bookings System.
+http://{{domain}}{% url 'activation' uidb64=uid token=token %}
+
+{% endautoescape %}

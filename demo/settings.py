@@ -30,6 +30,14 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL="userauth.User"
 
+EMAIL_FROM_USER = os.environ.get('EMAIL_FROM_USER')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+LOGIN_URL = '/auth/login'
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,11 +84,15 @@ WSGI_APPLICATION = 'demo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# ces_initial01
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ces_initial01',
+        'USER':'postgres',
+        'HOST':'localhost',
+        'PASSWORD': 'django123',
+        'PORT':'5432',
     }
 }
 
@@ -123,6 +135,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'demo/static')]
+
+MEDIA_URL = '/'
+MEDIA_ROOT = BASE_DIR
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

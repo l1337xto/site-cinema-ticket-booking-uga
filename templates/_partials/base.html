@@ -3,18 +3,20 @@
     {% load static %}
     {% csrf_token %}
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>
-            {% block title %}
-
-            {% endblock %}
-        
-        </title>
+        {% include "_partials/header.html" %}
     </head>
     <body>
-        {% include "_partials/header.html" %}
-        {%block content%}
-        {%endblock content%}
-        {% include "_partials/footer.html" %}
+        <main>
+            {%block content%}
+
+            {%endblock content%}
+        </main>
+        <footer>        
+            <div class="ui inverted vertical footer segment">
+                <div class="ui container">
+                    <p style="text-align: center;">&copy; 2021 Cinema E Booking System</p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

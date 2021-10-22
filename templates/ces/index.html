@@ -5,4 +5,42 @@ CES Home
 {% endblock %}
 {% block content%}
 {% include '_partials/messages.html'%}
+<h1 style="text-align: center; padding-bottom: 20px;">Watch Currently running movies</h1>
+  <div class="ui relaxed grid" style="padding-left: 50px;">
+      {% for movie in movies.all %}
+        <div class="item">
+            <div class="four wide column">
+                <div class="image">
+                  <img src="{{movie.thumbnail.url}}" width="320">
+                </div>
+                <div class="content">
+                  <div class="header"><h3>{{ movie.title }}</h3></div>
+                  <div class="meta">
+                    <a>{{movie.genre}}</a>
+                  </div>
+                  <div class="ui buttons">
+                      <a href="{{movie.trailer}}">
+                          <button class="ui youtube button" >
+                            <i class="youtube icon"></i>Trailer</button>
+                      </a>
+                      <a href="{{movie.review}}">
+                          <button class="ui green button"><i class="comments outline icon"></i>Reviews</button>
+                      </a>
+                      <a href="">
+                        <button class="ui yellow button"><i class="ticket alternate icon"></i>Tickets</button>
+                        
+                    </a>
+                  </div>
+                </div>
+                <div class="extra content">
+                    <span class="right floated">
+                      <i class="users icon"></i>{{movie.rating}}
+                    </span>
+                </div>
+              </div>
+        
+      </div>
+    
+
+    {%endfor%}
 {% endblock content %}
