@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     is_email_verified = models.BooleanField(default=False)
+    recieve_promo = models.BooleanField(default=False)
+    billing_address = models.CharField(max_length=100, default='')
+
     def __str__(self):
         return self.email
 

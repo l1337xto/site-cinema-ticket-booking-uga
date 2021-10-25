@@ -1,0 +1,9 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block branding%}
+<div style="display:flex; flex-direction:row; align-items: center;">
+
+    <img class="logo" style="width:90px; height: 30px;" src= {% static 'img/logo.png' %} />
+    <h1 id="site-name" style="padding-left:10px;"><a href="{% url 'admin:index' %}">CES Administration</a></h1>
+</div>
+{%endblock%}

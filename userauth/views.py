@@ -1,12 +1,12 @@
 from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from validate_email import validate_email
-from .models import User
-from django.contrib.auth import authenticate, login, logout
+from validate_email import validate_email # Pip package
+from .models import *
+from django.contrib.auth import authenticate, login, logout # for dealing with registered user in database
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from helpers.decorators import auth_user_should_not_access
+from django.contrib.auth.decorators import login_required #decorator which allows if a view can be accessed by user
+from helpers.decorators import auth_user_should_not_access # custom decorator which a user
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -44,6 +44,7 @@ def register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
+        recieve_promo = request.POST.get('recieve_promo')
 ######################################USER INFO VALIDATION#########################################  
         if len(password)<8:
             messages.add_message(request,messages.ERROR,'Password should be atleast 8 characters')
@@ -67,6 +68,8 @@ def register(request):
            return render(request,'userauth/register.html',context)
 ######################################USER SAVE#########################################  
         user = User.objects.create_user(username=username, email=email)
+        if recieve_promo == "on":
+            user.recieve_promo=True
         user.set_password(password)
         user.save()
 
