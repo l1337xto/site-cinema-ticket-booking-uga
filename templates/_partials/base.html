@@ -2,9 +2,12 @@
 <html lang="en">
     {% load static %}
     {% csrf_token %}
+    <title>{% block title %}{% endblock%}</title>
+    
     <head>
         {% include "_partials/header.html" %}
     </head>
+    {% include '_partials/messages.html'%}
     <body>
         <main>
             {%block content%}

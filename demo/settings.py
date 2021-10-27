@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ces.apps.CesConfig',
     'userauth.apps.UserauthConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,7 @@ MEDIA_ROOT = BASE_DIR
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_PUBLIC_KEY = "pk_test_51JozSrDfslo7WMjTMHHOgGDc0za0DFe01qIQazmbgshmjuyhGOjgFrW4Q4byQLPAHCVXGptPDSEgNmSVcjFZ2XRN00McGHLKr6"
+STRIPE_SECRET_KEY = "sk_test_51JozSrDfslo7WMjTTliepSLxsO1Gg7SdgKzAlnWjMLyP8brx1Jz3yKR7H4xOIhr3cDRYQtk1QMr1tLJvyAvbHq0V001WuM51vy"
+STRIPE_WEBHOOK_SECRET = ""

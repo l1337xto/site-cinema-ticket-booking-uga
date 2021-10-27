@@ -1,0 +1,27 @@
+ 
+[Clang 12.0.5 (clang-1205.0.22.9)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from cryptography.fernet import Fernet
+>>> message="5249648906772802"
+>>> encoded_message = message.encode()
+>>> key = Fernet.generate_key()
+>>> key
+b'qFH2yCqGF-P3l5pjTFWs-GcoD9MWgWLscMAImA9JxhU='
+>>> encrypt_key = Fernet(key)
+>>> encrypt_key
+<cryptography.fernet.Fernet object at 0x1028d3f10>
+>>> encrypted_message = encrypt_key.encrypt(encoded_message)
+>>> encrypt_message
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'encrypt_message' is not defined
+>>> encrypted_message
+b'gAAAAABheKnaoKpjeA3ag-Hb7GoHwRbfUpigI2wh_ZJ9SAdp4GOodm0rukejWHgxo5iA6o1mgcFnZOTkdKlFeyU-SjyJ9Tve_3V9hKhHSU1c6wqCaDRPTXw='
+>>> decrypted_message = encrypt_key.decrypt(encrypted_message)
+>>> decrypted_message
+b'5249648906772802'
+>>> 
+message.decode
+.isdecimal(), .isnumeric() method on string
+len(string)
+>>> card number = "xxxx xxxx xxxx" + message_received[12:16]

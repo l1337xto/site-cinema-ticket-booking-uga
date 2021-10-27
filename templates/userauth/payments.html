@@ -1,0 +1,12 @@
+{% extends '_partials/base.html' %}{% load static %}
+{% block title %}
+Payments Info for {{user.username}}
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+<input type="text" required name="card_number" placeholder="Card Number"/>
+<input type="text" required name="expiry_date" placeholder="Expiration"/>
+<input type="text" required name="cvv" placeholder="CVV" />
+
+

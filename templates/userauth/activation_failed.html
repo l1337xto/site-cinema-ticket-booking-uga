@@ -1,1 +1,6 @@
-<p>Expired Link, please generate another link to login</p>
+<p>User activation pending for {{user.email}}. Please generate another link to login</p>
+{% if user.is_email_verified %}
+<h4>user.username is already activated</h4>
+{% else %}
+<a href={% url 'retry_activation' uidb64=userid %}>Resend Activation Link</a>
+{% endif %}

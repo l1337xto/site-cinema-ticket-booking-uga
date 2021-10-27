@@ -1,14 +1,14 @@
 {% load static %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<header style="display: block; background-color:black; border: 1px solid black; padding: 0.5em;">
-  <h5 style="text-align: center; color: white; font-size: 100%; font-family: Nunito; padding:0em; margin: 0em;">
-    Come watch the latest movie releases!
+<header style="display: block; background-color:black;">
+  <h5 style="text-align: center; color: white; font-size: 100%; font-family: Nunito;">
+    Come watch the latest movie releases! {{request.user.email}}
   </h5>
 </header>
 <div class="ui menu">
   <div class="ui container">
     <a href={% url 'home' %} class="header item">
-      <img class="logo" style="width:60px; height: 40px;" src= {% static 'img/logo.png' %} />
+      <img class="logo" style="width:60px; height: 30px;" src= {% static 'img/logo.png' %} />
     </a>
     <div class="left item">
       Welcome to CES Movie Bookings
@@ -17,7 +17,7 @@
       <i class="search icon"></i>
       <div class="ui item"><a class="ui button">Search Movies</a></div>
       {% if request.user.is_authenticated %}
-      <a class="ui primary button">Edit Profile</a>
+      <a href={% url 'profile' %} class="ui primary button">My Profile</a>
       <div class="ui item">
         <a href="" class="ui primary button">My Bookings</a>
         </div>

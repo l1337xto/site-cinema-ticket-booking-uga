@@ -1,0 +1,30 @@
+{% extends '_partials/base.html' %}{% load static%}
+{% block title%}
+Profile Page:{{user.username}}
+{% endblock%}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/profilepage.css' %}">
+<div id="profilepic">
+    {% if user.profile_pic %}
+    <img src={{user.profile_pic.url}}>
+    {% else %}
+    <img src={% static 'img/profile.png' %}>
+    {% endif %}
+    <p style="padding-top: 20px;"><a id="profilebutton" href="{% url 'editprofile' %}">Edit Profile</a></p>
+</div>
+<div id="userdetails">
+    <h1>User Details</h1>
+    <h3>Name: {{user.get_full_name}}</h3>
+    <h3>Username: {{user.username}}</h3>
+    <h3>Email: {{user.email}}</h3>
+    <h3>Billing Address: {{user.billing_address}}</h3>
+    {%if user.recieve_promo%}
+    <h3>Promotions: ✅</h3>
+    {% else %}
+    <h3>Promotions: ❌</h3>
+    {% endif %}
+    <h3>Account Created: {{user.date_joined}}</h3>
+    <a id="profilebutton" href="{% url 'payments' %}">Payments</a>
+    <a id="profilebutton" href="{% url 'password_change' %}">Change Password</a>
+</div>
+{% endblock %}
