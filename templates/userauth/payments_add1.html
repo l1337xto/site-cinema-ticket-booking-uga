@@ -55,18 +55,7 @@ Payments Info for {{user.username}}
     </div>
 
 
-  
-<!-- <form method="post">
-    {% csrf_token %}
-    <div>
-        {{form|crispy}}
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-    </div>
-</form> -->
-
-<form style="padding-left: 600px;"method="post" action={% url 'payments' %} novalidate>
+<form style="padding-left: 600px;"method="post" action={% url 'addpay1' %} novalidate>
     {% csrf_token %}
     <h1 style="text-align: center;">Add Edit Card</h1>
     {{ form.non_field_errors }}
@@ -97,8 +86,8 @@ Payments Info for {{user.username}}
     font-size: 1em;
     padding-left: 2em;
     padding-right: 2em; margin-left: 70px; margin-top: 20px; margin-bottom: 20px;" type="submit">Submit</button>
-      <div style="margin-bottom: 30px;"><a href="{% url 'addpay' %}">Add/edit Another Payment Card</a></div>
   </form>
+
 
 {% endblock %}
 

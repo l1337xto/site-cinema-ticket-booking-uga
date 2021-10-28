@@ -1,0 +1,10 @@
+{% autoescape off%}
+
+Hi {{user.username}}, 
+Your user profile info was recently updated on our systems.
+Email: {{user.email}}
+User Name: {{user.first_name}} {{user.last_name}}
+Promotions: {{user.recieve_promo}}
+Billing Address: {{user.billing_address}}
+
+{% endautoescape %}

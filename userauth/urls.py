@@ -9,6 +9,9 @@ urlpatterns = [
     path('retry_activation/<uidb64>/',views.retry_activation,name='retry_activation'),
     path('profile',views.profile,name='profile'),
     path('payments',views.payments,name="payments"),
+    path('addpay',views.payments1,name="addpay"),
+    path('addpay1',views.payments2,name="addpay1"),
+
     path('editprofile',views.editprofile,name="editprofile"),
     ###########Password Reset#########
     path('reset_password',auth_views.PasswordResetView.as_view(template_name="userauth/password_reset.html"),name="reset_password"),

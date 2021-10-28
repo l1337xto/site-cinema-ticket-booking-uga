@@ -1,11 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from cryptography.fernet import _MAX_CLOCK_SKEW, Fernet
+from django.db.models.fields import BLANK_CHOICE_DASH #Encrypting data
+from mirage import fields
+from django.conf import settings
 class User(AbstractUser):
     is_email_verified = models.BooleanField(default=False)
     recieve_promo = models.BooleanField(default=False)
     billing_address = models.CharField(max_length=100, default='')
     profile_pic = models.ImageField(blank=True, default='', upload_to='user_pics/')
+    card_no = fields.EncryptedCharField(default='', blank=True)
+    card_no2 = fields.EncryptedCharField(default='',blank=True)
+    card_no3 = fields.EncryptedCharField(default='',blank=True)
+    valid_thru = models.CharField(max_length=2, choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),('11','11'),('12','12')], default='',blank=True)
+    valid_thru_y = models.CharField(max_length=2,choices=[('21','21'),('22','22'),('23','23'),('24','24'),('25','25'),('26','26'),('27','27'),('28','29'),('28','29')], default='', blank=True)
+    valid_thru1= models.CharField(max_length=2, choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),('11','11'),('12','12')], default='',blank=True)
+    valid_thru_y1 = models.CharField(max_length=2,choices=[('21','21'),('22','22'),('23','23'),('24','24'),('25','25'),('26','26'),('27','27'),('28','29'),('28','29')], default='', blank=True)
+    valid_thru2 = models.CharField(max_length=2, choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8'),('9','9'),('10','10'),('11','11'),('12','12')], default='',blank=True)
+    valid_thru_y2 = models.CharField(max_length=2,choices=[('21','21'),('22','22'),('23','23'),('24','24'),('25','25'),('26','26'),('27','27'),('28','29'),('29','29')], default='', blank=True)
+   
     def __str__(self):
         return self.email
 
