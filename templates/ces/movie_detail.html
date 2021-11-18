@@ -1,0 +1,51 @@
+{% extends '_partials/base.html' %}
+{% load static %}
+{% block title %}
+Detail page {{movied.title}}
+{% endblock %}
+{% block content%}    
+    <link rel="stylesheet" href={% static 'css/movie_detail.css' %}>        
+            <div id="moviecover">
+                <!-- Movie cover image on left side-->
+                <img src="{{movied.thumbnail.url}}">
+            </div>
+            <div class="containers" id="moviedetails">
+                <!-- Title and details on right side-->
+                <h1>{{ movied.title }}</h1>
+                <h2 style="color: greenyellow;">Genre: {{ movied.genre }}</h2>
+                <h3>Producer: {{ movied.producer }}</h3> 
+                <h3>Director: {{ movied.director }} </h3>
+                <h3>Cast: {{movied.cast}}</h3>
+                <h3 style="color: gray;">Synopsis: {{ movied.synopsis }}</h3>
+                <a style="background-color: yellow;" href="{{ movied.review }}" class="ui button">Click me! To read the Reviews</a>
+                <h3 style="color: bisque;">MPAA-US Film Ratings: {{ movied.rating }}</h3>
+                <a href={% url 'trailer' movied.pk %}>
+                    <button class="ui youtube button" >
+                      <i class="youtube icon"></i>Trailer</button>
+                </a>
+                {{movied.archived}}
+                {% if not movied.archived %}
+                
+                {% for movietime in time %}
+                
+                {% if not forloop.counter0 %}
+                <fieldset>
+                    <legend style="color: whitesmoke;">This movie is currently playing</legend>
+                    <h3>Playing on : {{ movietime.PlayingOn }} at {{ movietime.MovieTime }}</h3>
+                    <h3>Showroom:{{ movietime.showroom }}</h3>
+                </fieldset>
+                {% else %}
+                <fieldset>
+                    <legend style="color: whitesmoke;">Also is playing on</legend>
+                    <h3>Date :{{ movietime.PlayingOn }} at {{ movietime.MovieTime }}</h3>
+                    <h3>Showroom:{{ movietime.showroom }}</h3>   
+                </fieldset>
+                {% endif %}
+                {%endfor%}
+                <a id="buyticket" href={% url 'show_home' movied.pk %}>Get Tickets</a>
+               {% endif %}
+               {% if movied.archived %}
+               <h3 style="color: rgb(235, 231, 0);">{{movied.title}} is archived currently, no tickets available:(</h3>
+                {% endif %}
+            </div>
+{% endblock %}

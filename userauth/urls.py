@@ -11,8 +11,11 @@ urlpatterns = [
     path('payments',views.payments,name="payments"),
     path('addpay',views.payments1,name="addpay"),
     path('addpay1',views.payments2,name="addpay1"),
-
+    path('search',views.MovieSearch,name='search'),
     path('editprofile',views.editprofile,name="editprofile"),
+    path('trailer/<int:key>/',views.playtrailer, name='trailer'),
+    path('selectshowhome/<int:key>',views.select_showtime_home, name='show_home'),
+
     ###########Password Reset#########
     path('reset_password',auth_views.PasswordResetView.as_view(template_name="userauth/password_reset.html"),name="reset_password"),
     path('reset_password_sent',auth_views.PasswordResetDoneView.as_view(template_name="userauth/password_reset_sent.html"),name="password_reset_done"),

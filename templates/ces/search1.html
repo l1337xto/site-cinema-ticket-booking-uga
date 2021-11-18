@@ -1,0 +1,55 @@
+{% extends '_partials/base.html' %}
+{% load static %}
+{% block title %}
+Search Movies
+{% endblock %}
+{% block content%}    
+    <link rel="stylesheet" href={% static 'css/search1.css' %}>  
+            <!-- Body of the page -->
+            <div>
+            <h2>Let's see what you like</h2>
+            </div>
+            <fieldset>
+                <legend>Choose from a genre, or just the title</legend>
+                <form class="ui form" action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                    
+        
+                            <label>Title:</label>
+                            <div class="textbox">
+                            {{moviesearchform.title}}
+                            {{newmoviesearchform2.title}}
+                            </div>
+                    
+                       
+                            <label>Genre:</label>
+                            <div class="textbox">{{moviesearchform.genre}}
+                                {{newmoviesearchform2.genre}}</div>
+                       
+                        <div >
+                            <input id="searchbutton" class="ui submit button" style="text-align: center;" type="submit" value="Search">
+                        </div>
+                </form>
+            </fieldset>
+                <h2 style="font-size: 48px;">{{note}}</h2>
+            {% for movie in moviesearch.all %} 
+            {% if not movie.archived %}
+            <div id="row">
+                <img src="{{ movie.thumbnail.url}}" style="max-width: 140px; float:left;">
+                <h1>{{ movie.title }}</h1>
+                <a id="seedetails" href="{%url 'movie_detail' movie.id%}">See Details</a>
+            </div>
+            {%endif%}
+            {% endfor %} 
+
+            {% for movie in moviesearch.all %} 
+            {% if movie.archived %}
+            <div id="row">
+                <img src="{{ movie.thumbnail.url}}" style="max-width: 140px; float:left;">
+                <h1>{{ movie.title }}</h1>(Archived movie)
+                <a id="seedetails" href="{%url 'movie_detail' movie.id%}">See Details</a>
+            </div>
+            {%endif%}
+            {% endfor %}
+
+{% endblock %}

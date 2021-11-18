@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'ces.apps.CesConfig',
     'userauth.apps.UserauthConfig',
     'crispy_forms',
+    'embed_video',
 ]
 
 MIDDLEWARE = [

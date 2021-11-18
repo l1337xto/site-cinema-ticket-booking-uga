@@ -7,10 +7,11 @@ CES Home
 <h1 style="text-align: center; padding-bottom: 20px;">Watch Currently running movies</h1>
   <div class="ui relaxed grid" style="padding-left: 50px;">
       {% for movie in movies.all %}
+      {% if not movie.archived %}
         <div class="item">
             <div class="four wide column">
                 <div class="image">
-                  <img src="{{movie.thumbnail.url}}" width="320">
+                  <a href={% url 'movie_detail' movie.pk %}><img src="{{movie.thumbnail.url}}" width="320"></a>
                 </div>
                 <div class="content">
                   <div class="header"><h3>{{ movie.title }}</h3></div>
@@ -18,14 +19,14 @@ CES Home
                     <a>{{movie.genre}}</a>
                   </div>
                   <div class="ui buttons">
-                      <a href="{{movie.trailer}}">
+                      <a href={% url 'trailer' movie.pk %}>
                           <button class="ui youtube button" >
                             <i class="youtube icon"></i>Trailer</button>
                       </a>
                       <a href="{{movie.review}}">
                           <button class="ui green button"><i class="comments outline icon"></i>Reviews</button>
                       </a>
-                      <a href="">
+                      <a href={% url 'show_home' movie.pk %}>
                         <button class="ui yellow button"><i class="ticket alternate icon"></i>Tickets</button>
                         
                     </a>
@@ -39,7 +40,43 @@ CES Home
               </div>
         
       </div>
-    
-
+    {% endif %}
     {%endfor%}
+<div style="background-color: gray;">
+    <h1 style="text-align: center;padding-top:50px; padding-bottom: 50px; padding-left: 50px; font-size: 3em;">Coming Soon!</h1>
+    <div class="ui relaxed grid" style="padding-left: 10px; padding-bottom: 30px;">
+        {% for movie in movies.all %}
+        {% if movie.archived %}
+          <div class="item">
+              <div class="four wide column">
+                  <div class="image">
+                    <a href={% url 'movie_detail' movie.pk %}><img src="{{movie.thumbnail.url}}" width="320"></a>
+                  </div>
+                  <div class="content">
+                    <div class="header"><h3>{{ movie.title }}</h3></div>
+                    <div class="meta">
+                      <a>{{movie.genre}}</a>
+                    </div>
+                    <div class="ui buttons" style="padding-left: 50px;">
+                        <a href={% url 'trailer' movie.pk %}>
+                            <button class="ui youtube button" >
+                              <i class="youtube icon"></i>Trailer</button>
+                        </a>
+                        <a href="{{movie.review}}">
+                            <button class="ui green button"><i class="comments outline icon"></i>Reviews</button>
+                        </a>
+                    </div>
+                  </div>
+                  <div class="extra content">
+                      <span class="right floated">
+                        <i class="users icon"></i>{{movie.rating}}
+                      </span>
+                  </div>
+                </div>
+          
+        </div>
+          {% endif %}
+          {%endfor%}
+      </div>
+</div>
 {% endblock content %}

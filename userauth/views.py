@@ -14,26 +14,15 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str, force_text, DjangoUnicodeDecodeError
 from .utils import generate_token
+from .forms import MovieSearchForm
 from django.core.mail import EmailMessage
 from django.conf import settings
 import threading #Sends emails in the background 
 from django.forms import ModelForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
-from cryptography.fernet import Fernet #Encrypting data
-#####################Encrpyt string function########################
-def encrypt_card(card_no, user):
-    card_no_encoded = card_no.encode()
-    key = user.key
-    encryption_key = Fernet(key)
-    encrpyted_card_no = encryption_key.encrypt(card_no_encoded)
-    return encrpyted_card_no
-def decrypt_card(encrypted_card_no, user):
-    decryption_key = user.key
-    decrypted_card_no_encoded = decryption_key.decrypt(encrypted_card_no)
-    card_no = decrypted_card_no_encoded.decode()
-    return "xxxx-xxxx-xxxx-"+card_no[12:16]
-
+from django.db.models.functions import Now
+#Food.objects.filter(exp_date__gt=Now())
 #####################PASSWORD CHANGE VIEW#############################
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
@@ -149,7 +138,7 @@ def profile(request):
     user = request.user
     return render(request, 'ces/profilepage.html',{'user':user})#'userauth/profile.html'
 
-
+#######################Payments Form######################
 class PaymentForm(ModelForm):
     class Meta:
         model = User
@@ -251,3 +240,73 @@ def editprofile(request):
     else:
         form = ProfileForm(instance = request.user)
     return render(request, 'ces/editprofile.html',{'form':form, 'user':request.user})
+
+############################### Movie Search ###################################    
+#################################################################################
+def MovieSearch(request):
+    movieSearch = Movies.objects
+    moviescheduleSearch = ScheduleMovie.objects
+    no_of_movies = movieSearch.all().count()
+    if request.method == 'POST':
+        moviesearchform2 = MovieSearchForm(request.POST)
+        if moviesearchform2.is_valid():
+            name=moviesearchform2.cleaned_data['title']
+            genre=moviesearchform2.cleaned_data['genre']
+            note = 'All the movies in our theatre'
+            if(name and genre):
+                foundname=movieSearch.filter(genre__icontains=genre)
+                foundname=foundname.filter(title__icontains=name)
+                foundschedule=moviescheduleSearch.filter(movie__genre__icontains=genre)
+                foundschedule=foundschedule.filter(movie__name__icontains=name)
+                if not foundname:
+                    note = 'No search results for Movie name: %s in Genre %s' %(name,genre)
+                else:
+                    note = 'Here are the search results for Movie name: %s in Genre %s' %(name,genre)
+
+            elif(name):
+                foundname=movieSearch.filter(title__icontains=name)
+                foundschedule=moviescheduleSearch.filter(movie__title__icontains=name)
+                if not foundname:
+                    note = 'No search results for Movie name: %s' %(name)
+                else:
+                    note = 'Here are the search results for Movie:  %s' %(name)
+            elif(genre):
+                foundname=movieSearch.filter(genre__icontains=genre)
+                foundschedule=moviescheduleSearch.filter(movie__genre__icontains=genre)
+                if not foundname:
+                    note = 'No search results in genre %s' %(genre)
+                else:
+                    note = 'Here are the search results for Genre %s' %(genre)
+            else:
+                foundname=movieSearch.all()
+                foundschedule=moviescheduleSearch.all()
+            newmoviesearchform2=MovieSearchForm()
+            return render(request, 'ces/search1.html',{'newmoviesearchform2':newmoviesearchform2,'note':note, 'moviesearch':foundname, 'count':no_of_movies,'time':foundschedule})
+    else:
+        moviesearchform=MovieSearchForm()
+        return render(request, 'ces/search1.html',{'moviesearchform':moviesearchform,'count':no_of_movies})
+#################################################################################
+def sendPromo(request, promo_id):
+    user = User.objects.filter(recieve_promo=True)
+    promo = get_object_or_404(Promotions,pk=promo_id)
+    code = promo.promo_code
+    valid = promo.promo_validity
+    contextp = {'promotion_name': code, 'validity':valid}
+    domain_name = get_current_site(request)
+    email_subject = 'You have a new promotion from CES'
+    email_body = render_to_string('ces/promo_mail.html',contextp)
+    for theuser in user:
+        email=EmailMessage(subject=email_subject, body=email_body, from_email = settings.EMAIL_FROM_USER, to=[theuser.email])
+        EmailThread(email).start()
+    messages.add_message(request,messages.SUCCESS, 'Promotion sent successfully')
+def playtrailer(request, key):
+    movie = get_object_or_404(Movies,pk=key)
+    trailer_link = movie.video 
+    return render(request,'ces/trailer.html', {'trailer':trailer_link})
+def select_showtime_home(request,key):
+    movie = get_object_or_404(Movies,pk=key)
+    title=movie.title
+    showtime = ScheduleMovie.objects.filter(movie__title__exact=title)
+    return render(request,'ces/showtimes.html',{'showtime':showtime,'movie':title})
+
+    

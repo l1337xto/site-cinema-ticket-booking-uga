@@ -15,7 +15,7 @@
     </div>
     <div class="right item">
       <i class="search icon"></i>
-      <div class="ui item"><a class="ui button">Search Movies</a></div>
+      <div class="ui item"><a href={% url 'search' %} class="ui button">Search Movies</a></div>
       {% if request.user.is_authenticated %}
       <a href={% url 'profile' %} class="ui primary button">My Profile</a>
       <div class="ui item">

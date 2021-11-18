@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Comfortaa:wght@300&family=Pacifico&display=swap&family=Nunito&display=swap');
+
+
+aside {
+    border: 1px solid white;
+    margin-left:20em;
+    margin-right: 20em;
+    margin-top: 2em;
+    padding: 1em;
+}
+
+.showtime {
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1.5em;
+    padding-right:1.5em;
+    background-color: white;
+    margin-left: 0.5em;
+    margin-right: 2em;
+    margin-bottom: 1em;
+    float:left;
+    font-family: Nunito;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-size: 1em;
+    color: black;
+}
+
+.showtime:hover {
+    background-color:aquamarine;
+}
+
+.next {
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1.5em;
+    padding-right:1.5em;
+    background-color: white;
+    margin-left: 1.5em;
+    margin-right: 2em;
+    margin-bottom: 1em;
+    float:left;
+    font-family: Nunito;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-size: 1.5em;
+    color: black;
+}
+
+h1 {
+    font-family: Chewy;
+    font-size: 3em;
+    text-align: center;
+    color:white;
+}
+
+
+body{
+    font-family: Nunito;
+    border: 1px solid black;
+    padding:0em;
+    margin:0em;
+    height:auto;
+}
+
+main{
+    height: 700px;
+    border: 1px solid black;
+    padding-top:0;
+    padding-bottom: 2em;
+    background-color:black;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+#shopbutton {
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1em;
+    padding-right:1em;
+    background-color: white;
+    font-family: Nunito;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-size: 60%;
+    color: black;
+}
+
+p {
+    text-align: center;
+    margin-top:5px;
+}
+
+footer{
+    display:block;
+    border: 1px solid black;
+    padding-top:10px;
+    background-color:black;
+}
+
+span{
+    color:white;
+    font-size: 13px;
+}

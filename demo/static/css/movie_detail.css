@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Comfortaa:wght@300&family=Pacifico&display=swap&family=Nunito&display=swap');
+
+body{
+    font-family: Nunito;
+    border: 1px solid black;
+    padding:0em;
+    margin:0em;
+    height:auto;
+}
+
+header{
+    display: block;
+    background-color:black;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+header h5{
+    text-align: center;
+    color: white;
+    font-size: 100%;
+    font-family: Nunito;
+    padding:0em;
+    margin: 0em;
+}
+
+
+/*************** *******/
+
+/* STYLE OF MENU */
+
+/*************** *******/
+
+
+#mainlist{
+    color:black;
+    margin-top: 0em;
+    border: none;
+}
+
+.menu {
+    height: 60px;
+    padding-left: 5em;
+    padding-right: 5em;
+    position: relative;
+    z-index: 1;
+}
+
+#logo {
+    max-width: 60px;
+    padding: 1em;
+    margin-right: 23em;
+    float:left;
+    height:auto;
+}
+
+#icon {
+    max-width: 25px;
+}
+
+.menu ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.menu li{
+    width:120px;
+    margin:0;
+    text-align:center;
+    float: left;
+}
+
+.menu a {
+    font-weight: 600;
+    font-size: 100%;
+    color:black;
+    background-color: white;
+    border: 2px solid black;
+    display:block;
+    padding:10px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+
+a:link{
+    text-decoration: none;
+}
+
+
+/*************** *******/
+
+/* STYLE OF BODY OF PAGE */
+
+/*************** *******/
+
+main{
+    height: 1200px;
+    border: 1px solid black;
+    padding-top:0;
+    padding-bottom: 2em;
+    background-color:black;
+}
+
+#moviecover {
+    float:left;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    padding-right: 10em;
+    padding-left: 12em;
+}
+
+img {
+    max-height: 720px;
+}
+
+#moviedetails {
+    width: 553px;
+    float:left;
+    padding: 5em;
+    text-align:center;
+}
+
+h1 {
+    color: white;
+    font-family: Chewy;
+    font-size: 5em;
+}
+
+h2 {
+    color: white;
+}
+
+h3 {
+    color: white;
+    min-height: 30px;
+}
+.reviewbutton {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #1f11df;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+  }
+#buyticket {
+    color: black;
+    border: 1px solid white;
+    background-color: white;
+    font-family: Nunito;
+    border-radius: 50px;
+    padding: 10px;
+    font-size: 2em;
+    margin-top: 2em;
+}
+/*************** *******/
+
+/* STYLE OF FOOTER OF PAGE */
+
+/*************** *******/
+
+p {
+    text-align: center;
+    margin-top:5px;
+}
+
+footer{
+    display:block;
+    border: 1px solid black;
+    padding-top:10px;
+    background-color:black;
+}
+
+span{
+    color:white;
+    font-size: 13px;
+}

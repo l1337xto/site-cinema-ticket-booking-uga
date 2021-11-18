@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cryptography.fernet import _MAX_CLOCK_SKEW, Fernet
-from django.db.models.fields import BLANK_CHOICE_DASH #Encrypting data
+from django.db.models.fields import BLANK_CHOICE_DASH
+from django.db.models.fields.related import ManyToManyField #Encrypting data
 from mirage import fields
 from django.conf import settings
+from embed_video.fields import EmbedVideoField
+from django.db.models.functions import Now
 class User(AbstractUser):
     is_email_verified = models.BooleanField(default=False)
     recieve_promo = models.BooleanField(default=False)
@@ -33,9 +36,8 @@ class Movies(models.Model):
     thumbnail = models.ImageField(upload_to='images/',default='')
     trailer = models.URLField(max_length=200,default='')
     rating = models.CharField(max_length=100, choices = [('G','G General Audiences'),('PG','PG Parental Guidance Suggested'),('PG-13', 'PG-13 Parents Strongly Cautioned'),('R','R Restricted'),('NC-17', 'NC-17 Adults Only')],default='')
-    showDate = models.DateField(null=True, blank=True)
-    showTimes = models.CharField(max_length=10, blank=True,
-    choices=[('9.00 AM','9.00 AM'),('11.00 AM','11.00 AM'),('2.00 PM','2.00 PM'),('5.00 PM','5.00 PM'),('9.00 PM','9.00 PM'),('11.00 PM','11.00 PM')], default='')
+    archived = models.BooleanField(default=False,null=True,blank=True,help_text='Setting as yes will not allow users to book ticket for this movie')
+    video = EmbedVideoField()
     def __str__(self):
         return self.title
 
@@ -46,11 +48,43 @@ class Movies(models.Model):
     #         for i in range(15):
     #             s = Seat(seat_id=abc[j] + str(i+1), cost=100, movie=self, show=self.show)
     #             s.save()
-    
+class ShowRoom(models.Model):
+    showroom = models.CharField(max_length=1,help_text='Single character theatre code',unique=True)
+    numSeats = models.IntegerField(help_text='Number of seats should be a positive input')
+    def __str__(self):
+        return self.showroom
+
+############################### Movie Schedule ###################################    
+#################################################################################
+class MovieTime(models.Model):
+    showDateTime = models.DateField()
+    def __str__(self):
+        return str(self.showDateTime)
+class MovieShowTime(models.Model):
+    showTimes = models.TimeField()
+    def __str__(self):
+        return str(self.showTimes)
+
+class Scheduler(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(PlayingOn__gte=Now())
+
+class ScheduleMovie(models.Model):
+    movie=models.ForeignKey(Movies,on_delete=models.CASCADE)
+    PlayingOn = models.DateField(db_index=True)
+    MovieTime = models.TextField(max_length=10,choices=[('7AM','7AM'),('9AM','9AM'),('11AM','11AM'),('1PM','1PM'),('3PM','3PM'),('5PM','5PM'),('7PM','7PM'),('9PM','9PM'),('11PM','11PM')])
+    showroom = models.ForeignKey(ShowRoom,on_delete=models.CASCADE)
+    objects = Scheduler()
+    class Meta:
+        unique_together = ('showroom', 'MovieTime','PlayingOn')
+    def __str__(self):
+        return self.movie.title
+#################################################################################
+
 class Promotions(models.Model):
-    promo_code = models.CharField(max_length=10)
+    is_promo_sent = models.BooleanField(default=False, editable=False)
+    promo_code = models.CharField(max_length=10, unique=True, editable=is_promo_sent,help_text='Promotion code once created is non-editable' )
     promo_validity = models.DateField()
-    
     def __str__(self):
         return self.promo_code
      
@@ -58,25 +92,8 @@ class Seat(models.Model):
     seat_id = models.CharField(max_length=4)
     seat_state = models.BooleanField(default=False)
     cost = models.IntegerField()
-    movie = models.ForeignKey(Movies, on_delete=models.CASCADE)
     # show = models.ForeignKey(Theatre, on_delete=models.CASCADE)
 
-class ShowRoom(models.Model):
-    showroom = models.IntegerField()
-    # theatre = models.ForeignKey(Theatre)
-    numSeats = models.IntegerField() # is there max amount of seats in instructions?
-    movie = models.ForeignKey(Movies,on_delete=models.CASCADE)
-    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
-
-class Theatre(models.Model):
-    theatre_name = models.CharField(max_length=50)
-    city = models.CharField(max_length=20)
-    showroom = models.ForeignKey(ShowRoom,on_delete=models.CASCADE)
-    def __str__(self):
-        return self.theatre_name
-     
-
-#theatre is not logical booking or show
 
 class Tickets(models.Model):
     ticket_id = models.CharField(max_length=75)

@@ -1,0 +1,9 @@
+{% extends '_partials/base.html' %}
+{% load static %}
+{% block title %}
+Search Movies
+{% endblock %}
+{% block content%} 
+{% load embed_video_tags %}
+<div style="margin-left: 400px;">{% video trailer 'medium' %}</div> 
+{% endblock content%}
