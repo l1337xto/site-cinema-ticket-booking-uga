@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'userauth.apps.UserauthConfig',
     'crispy_forms',
     'embed_video',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

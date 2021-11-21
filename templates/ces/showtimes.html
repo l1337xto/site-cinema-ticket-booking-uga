@@ -13,7 +13,7 @@
                 <h1>Showtimes for {{movie.title}}</h1>
                 {%for show in showtime%}
                 <h1 style="font-size:24px; text-align: left;">{{show.PlayingOn}}</h1>
-                <button type="submit" class="showtime">{{show.MovieTime}} At {{show.showroom}} Showroom</button>
+                <a href="{% url 'ticket' show.id %}" class="showtime">{{show.MovieTime}} At {{show.showroom}} Showroom</a>
                 <p stlye="font-family: Chewy;font-size: 1em;text-align: left;color:black;">Hidden Text</p>
                 <br>
                 {% empty %}

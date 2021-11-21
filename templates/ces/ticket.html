@@ -1,0 +1,36 @@
+{% extends '_partials/base.html' %} {% load bootstrap3 %}
+{% load static %}
+{% block title %}
+Select tickets
+{% endblock %}
+{% block content%}
+<div style="background-color: #0a0a0a;display: flex;flex-direction: column;color: white;align-items: center;justify-content: center;
+height: 80vh;font-family: 'Lato', 'sans-serif';">
+ <div class="movie-container">
+    <h1>Please select ticket type and quantity for {{show.movie.title}}:</h1>
+    <!-- <select id="movie">
+      <option value="10">Avengers: Endgame ($10)</option>
+      <option value="12">Joker ($12)</option>
+      <option value="8">Toy Story 4 ($8)</option>
+      <option value="9">The Lion King ($9)</option>
+    </select> -->
+  </div>
+<div style="background-color: rgba(0, 0, 0,0.75);border: 0;border-radius: 5px;font-size: 14px;margin-left: 10px;padding: 5px 15px 5px 15px;">
+    <ul style="background-color: rgba(0,0,0,0.1); padding:5px 10px; border-radius:5px; color:rgb(154, 204, 16); list-style-type: none; display:flex; justify-content: center; ">
+        <li style="display: flex;align-items: center;justify-content:center;margin: 0 10px;">Adult Ticket is ${{show.ticket_adult}}</li>
+        <li style="display: flex;align-items: center;justify-content:center;margin: 0 10px;">Child Ticket is ${{show.ticket_child}}</li>
+        <li style="display: flex;align-items: center;justify-content:center;margin: 0 10px;">Senior Ticket is ${{show.ticket_senior}}</li>
+    </ul>
+</div>
+
+<div>
+    <form method="post" style="list-style:none; ">
+        {%csrf_token%}
+        {{ form.as_p }}
+        <input type="submit" style="padding: 15px;background-color: white;font-family: Calibri;border: 1px solid black;
+        border-radius: 30px;font-size: 110%;text-align: center;
+        color: black;position:relative;top: 90%;left:40%;text-decoration: none;" value="Select Seats">
+    </form>
+</div>
+</div>
+{% endblock content%}

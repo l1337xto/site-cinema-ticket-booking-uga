@@ -19,8 +19,11 @@ def Unarchive(modeladmin,request,queryset):
         queryset.update(archived=False)
     Unarchive.short_description = "Unarchive selected movies"
 
-class MovieAdmin(admin.ModelAdmin):
+class ShowroomAdmin(admin.ModelAdmin):
+    readonly_fields=('numSeats',)
+    list_display = ('showroom','numSeats')
 
+class MovieAdmin(admin.ModelAdmin):
     list_display=('title','archived','genre','rating')
     ordering=('archived',)
     actions=[Archive, Unarchive]
@@ -55,9 +58,11 @@ class ScheduleMovieAdmin(admin.ModelAdmin):
     model = ScheduleMovie
     ordering = ('PlayingOn',)
     movie = Movies.objects.filter(archived=True)
-    list_display=('movie','PlayingOn','MovieTime','showroom')
+    list_display=('movie','PlayingOn','MovieTime','showroom','booked_seats','seats_left')
+    readonly_fields = ('booked_seats','seats_left')
     ScheduleMovie._base_manager.filter(PlayingOn__lte=Now()).delete()
-
+    def seats_left(self,obj):
+        return obj.showroom.numSeats - obj.booked_seats
 
 class MovieTimeAdmin(admin.ModelAdmin):
     exclude=('showDateTime',)
@@ -66,7 +71,7 @@ class MovieTimeAdmin(admin.ModelAdmin):
 admin.site.register(User,UserAdmin)
 admin.site.register(Movies,MovieAdmin)
 admin.site.register(Promotions, PromotionsAdmin)
-admin.site.register(Shows)
 admin.site.register(ScheduleMovie,ScheduleMovieAdmin)
 admin.site.register(MovieShowTime)
-admin.site.register(ShowRoom)
+admin.site.register(ShowRoom,ShowroomAdmin)
+admin.site.register(Tickets)

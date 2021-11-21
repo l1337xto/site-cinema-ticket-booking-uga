@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.generic.base import ContextMixin
 from validate_email import validate_email # Pip package
 from .models import *
 from django.contrib.auth import authenticate, login, logout # for dealing with registered user in database
@@ -309,4 +310,44 @@ def select_showtime_home(request,key):
     showtime = ScheduleMovie.objects.filter(movie__title__exact=title)
     return render(request,'ces/showtimes.html',{'showtime':showtime,'movie':title})
 
-    
+class TicketForm(ModelForm):
+    class Meta:
+        model = Tickets
+        exclude = ('show','user','isBookingCancelled')
+@login_required
+def select_ticket(request,key):
+    user = request.user
+    form = TicketForm(request.POST, instance=request.user)
+    show = ScheduleMovie.objects.get(pk=key)
+    seats_left = show.remaining_seats()
+    if request.method=="POST":
+        if form.is_valid():
+            c=form.cleaned_data['ticket_child']
+            a=form.cleaned_data['ticket_adult']
+            s=form.cleaned_data['ticket_senior']
+            if(c >=0 and a>=0 and s>=0) and (c+a+s>0):
+                if (c+a+s <= seats_left):
+                    show.booked_seats+=c+a+s
+                    show.save()
+                    Tickets.objects.create(user=user,show=show,ticket_child=c,ticket_adult=a,ticket_senior=s)
+                    form.save()
+                elif(c+a+s == seats_left):
+                    messages.add_message(request,messages.ERROR, 'Show fullhouse')
+                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+                else:
+                    messages.add_message(request,messages.ERROR, 'Seats overflow, try selecting lesser seats')
+                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+            else:
+                messages.add_message(request,messages.ERROR, 'Seat quantity should be valid')
+                return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+
+        messages.add_message(request,messages.SUCCESS, 'Tickets selected')
+        return redirect('home')
+    else:
+        form=TicketForm(instance=request.user)
+    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+
+def select_ticketz(request, key):
+    show = get_object_or_404(ScheduleMovie,pk=key)
+    context={'show':show}
+    return render(request, 'ces/ticket.html',context)

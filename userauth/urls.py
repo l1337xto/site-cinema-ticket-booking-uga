@@ -15,6 +15,7 @@ urlpatterns = [
     path('editprofile',views.editprofile,name="editprofile"),
     path('trailer/<int:key>/',views.playtrailer, name='trailer'),
     path('selectshowhome/<int:key>',views.select_showtime_home, name='show_home'),
+    path('ticket/<int:key>',views.select_ticket,name='ticket'),
 
     ###########Password Reset#########
     path('reset_password',auth_views.PasswordResetView.as_view(template_name="userauth/password_reset.html"),name="reset_password"),
