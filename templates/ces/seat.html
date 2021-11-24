@@ -1,0 +1,117 @@
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/seat.css' %}" />
+    <div style="background-color: rgba(219, 80, 80, 0.75);border: 0;border-radius: 5px;font-size: 20px;margin-left: 10px;margin-bottom: 30px;padding: 5px 15px 5px 30px;">
+      Session Expires in {{expiry}} seconds, please complete booking before {{expiryt}} 
+    </div>
+  <body>
+    <div class="movie-container">
+      <label style="font-size: 36px;">Movie:</label>
+      <select id="movie">
+        <option style="font-size: 36px;"value="1">{{ticket.show.movie.title}}</option>
+      </select>
+    </div>
+
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>Available</small>
+      </li>
+
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+
+    <div class="container">
+      <div class="screen"></div>
+      <div class="row">
+        <p class="text">A</p>
+        <div class="seat" name="A1" value="A1"></div>
+        <div class="seat" name="A2" value="A2"></div>
+        <div class="seat" name="A3" value="A3"></div>
+        <div class="seat" name="A4" value="A4"></div>
+        <div class="seat" name="A5" value="A5"></div>
+        <div class="seat" name="A6" value="A6"></div>
+        <div class="seat" name="A7" value="A7"></div>
+        <div class="seat" name="A8" value="A8"></div>
+      </div>
+      <div class="row">
+        <p class="text">B</p>
+        <div class="seat" name="B1" value="B1"></div>
+        <div class="seat" name="B2" value="B2"></div>
+        <div class="seat" name="B3" value="B3"></div>
+        <div class="seat" name="B4" value="B4"></div>
+        <div class="seat" name="B5" value="B5"></div>
+        <div class="seat" name="B6" value="B6"></div>
+        <div class="seat" name="B7" value="B7"></div>
+        <div class="seat" name="B8" value="B8"></div>
+      </div>
+
+      <div class="row">
+        <p class="text">C</p>
+        <div class="seat" name="C1" value="C1"></div>
+        <div class="seat" name="C2" value="C2"></div>
+        <div class="seat" name="C3" value="C3"></div>
+        <div class="seat" name="C4" value="C4"></div>
+        <div class="seat" name="C5" value="C5"></div>
+        <div class="seat" name="C6" value="C6"></div>
+        <div class="seat" name="C7" value="C7"></div>
+        <div class="seat" name="C8" value="C8"></div>
+      </div>
+
+      <div class="row">
+        <p class="text">D</p>
+        <div class="seat" name="D1" value="D1"></div>
+        <div class="seat" name="D2" value="D2"></div>
+        <div class="seat" name="D3" value="D3"></div>
+        <div class="seat" name="D4" value="D4"></div>
+        <div class="seat" name="D5" value="D5"></div>
+        <div class="seat" name="D6" value="D6"></div>
+        <div class="seat" name="D7" value="D7"></div>
+        <div class="seat" name="D8" value="D8"></div>
+      </div>
+
+      <div class="row">
+        <p class="text">E</p>
+        <div class="seat" name="E1" value="E1"></div>
+        <div class="seat" name="E2" value="E2"></div>
+        <div class="seat" name="E3" value="E3"></div>
+        <div class="seat" name="E4" value="E4"></div>
+        <div class="seat" name="E5" value="E5"></div>
+        <div class="seat" name="E6" value="E6"></div>
+        <div class="seat" name="E7" value="E7"></div>
+        <div class="seat" name="E8" value="E8"></div>
+      </div>
+
+      <div class="row">
+        <p class="text">F</p>
+        <div class="seat" name="F1" value="F1"></div>
+        <div class="seat" name="F2" value="F2"></div>
+        <div class="seat" name="F3" value="F3"></div>
+        <div class="seat" name="F4" value="F4"></div>
+        <div class="seat" name="F5" value="F5"></div>
+        <div class="seat" name="F6" value="F6"></div>
+        <div class="seat" name="F7" value="F7"></div>
+        <div class="seat" name="F8" value="F8"></div>
+      </div>
+    <pre style="color:rgb(255, 255, 255);font-size:105%">  1   2     3    4    5    6    7   8</pre>
+    </div>
+    <div style="background-color: rgba(105, 80, 219, 0.75);border: 0;border-radius: 5px;font-size: 20px;margin-left: 10px;margin-bottom: 30px;padding: 5px 15px 5px 30px;">
+    <p class="text">
+      You have selected <span id="count">0</span> seats out of <span id="limit">{{qnty}}</span>
+      This show has {{seat_left}} tickets left.
+    </p>
+    </div>
+    <div id="payButton">
+      <a id="continue" href="{% url 'pay' %}">Proceed to payment </a>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>

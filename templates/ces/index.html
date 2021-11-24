@@ -6,7 +6,7 @@ CES Home
 {% block content%}
 <h1 style="text-align: center; padding-bottom: 20px;">Watch Currently running movies</h1>
 
-  <div class="ui relaxed grid" style="padding-left: 50px; background-color: rgba(255, 255, 255, 0.315);">
+  <div class="ui relaxed grid" style="padding-left: 50px; background-color: rgba(255, 102, 102, 0.205);">
       {% for movie in movies.all %}
       {% if not movie.archived %}
         <div class="item">
@@ -42,9 +42,9 @@ CES Home
       </div>
     {% endif %}
     {%endfor%}
-<div style="background-color:rgba(129, 129, 129, 0.486);">
+<div style="background-color:rgba(255, 0, 0, 0.075); display: flex;flex-direction: column;align-items: center;justify-content: center;">
     <h1 style="text-align: center;padding-top:50px; padding-bottom: 50px; padding-left: 50px; font-size: 3em;">Coming Soon!</h1>
-    <div class="ui relaxed grid" style="padding-left: 10px; padding-bottom: 30px;">
+    <div class="ui grid" style="padding-left: 1px; padding-bottom: 30px;">
         {% for movie in movies.all %}
         {% if movie.archived %}
           <div class="item">

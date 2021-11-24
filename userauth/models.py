@@ -8,6 +8,7 @@ from django.conf import settings
 from embed_video.fields import EmbedVideoField
 from django.db.models.functions import Now
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import timedelta
 class User(AbstractUser):
     is_email_verified = models.BooleanField(default=False)
     recieve_promo = models.BooleanField(default=False)
@@ -103,8 +104,11 @@ class Tickets(models.Model):
     ticket_child=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     ticket_adult=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     ticket_senior=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    time_created = models.DateTimeField(auto_now_add=True,auto_now=False)
     def __str__(self):
-        return f'User: %s for Movie : %s Playing On %s at %s'%(self.user,self.show,self.show.PlayingOn,str(self.show.MovieTime))
+        return self.user.username
+    def total_tickets(self):
+        return self.ticket_child+self.ticket_senior+self.ticket_adult
 """
 class Bookings(models.Model):
     user = models.ManyToManyField(User)

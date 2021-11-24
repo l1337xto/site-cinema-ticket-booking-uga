@@ -6,14 +6,9 @@ Select tickets
 {% block content%}
 <div style="background-color: #0a0a0a;display: flex;flex-direction: column;color: white;align-items: center;justify-content: center;
 height: 80vh;font-family: 'Lato', 'sans-serif';">
- <div class="movie-container">
-    <h1>Please select ticket type and quantity for {{show.movie.title}}:</h1>
-    <!-- <select id="movie">
-      <option value="10">Avengers: Endgame ($10)</option>
-      <option value="12">Joker ($12)</option>
-      <option value="8">Toy Story 4 ($8)</option>
-      <option value="9">The Lion King ($9)</option>
-    </select> -->
+ <div style="padding:15px 30px 30px 30px ;background-color: rgba(255, 255, 255, 0.281);" class="movie-container">
+    <h1 style="text-align: center;">{{show.movie.title}}</h1>
+    <h3 style="text-align: center;">There are currently {{remain}} seats remaining.</h3>
   </div>
 <div style="background-color: rgba(0, 0, 0,0.75);border: 0;border-radius: 5px;font-size: 14px;margin-left: 10px;padding: 5px 15px 5px 15px;">
     <ul style="background-color: rgba(0,0,0,0.1); padding:5px 10px; border-radius:5px; color:rgb(154, 204, 16); list-style-type: none; display:flex; justify-content: center; ">
@@ -22,15 +17,24 @@ height: 80vh;font-family: 'Lato', 'sans-serif';">
         <li style="display: flex;align-items: center;justify-content:center;margin: 0 10px;">Senior Ticket is ${{show.ticket_senior}}</li>
     </ul>
 </div>
-
+{% if remain %}
 <div>
     <form method="post" style="list-style:none; ">
         {%csrf_token%}
         {{ form.as_p }}
-        <input type="submit" style="padding: 15px;background-color: white;font-family: Calibri;border: 1px solid black;
-        border-radius: 30px;font-size: 110%;text-align: center;
-        color: black;position:relative;top: 90%;left:40%;text-decoration: none;" value="Select Seats">
+        <div style="margin-left: 80px; margin-bottom: 40px;margin-top: 20px;">
+          <button value="submit">Select Seats</button>
+        </div>
+       
     </form>
+</div>
+{%else%}
+<div style="background-color: rgba(0, 38, 255, 0.459);border: 0;border-radius: 5px;font-size: 14px;margin-left: 10px;padding: 5px 15px 5px 15px;">
+  Sorry the show is currently housefull
+</div>
+{%endif%}
+<div style="background-color: rgba(136, 255, 0, 0.75);border: 0;border-radius: 5px;font-size: 14px;margin-left: 10px;padding: 5px 15px 5px 15px;">
+  Session Expires in {{expiry}} seconds, please complete booking before {{expiryt}} 
 </div>
 </div>
 {% endblock content%}

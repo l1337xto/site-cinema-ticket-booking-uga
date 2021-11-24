@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import auth
 from django.http import request
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.contrib import messages
 from django.views.generic.base import ContextMixin
 from validate_email import validate_email # Pip package
@@ -23,7 +23,8 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.db.models.functions import Now
-#Food.objects.filter(exp_date__gt=Now())
+from datetime import datetime, timezone, timedelta
+#Any.objects.filter(exp_date__gt=Now())
 #####################PASSWORD CHANGE VIEW#############################
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
@@ -106,6 +107,7 @@ def login_user(request):
         messages.add_message(request,messages.SUCCESS, f'Log-in successful, Welcome {user.username}')
         return redirect(reverse('home'))
 ######################################USER LOGGED IN#########################################        
+    request.session.flush()
     return render(request,'userauth/login.html')
 ######################################USER LOGOUT#########################################  
 @login_required    
@@ -304,6 +306,7 @@ def playtrailer(request, key):
     movie = get_object_or_404(Movies,pk=key)
     trailer_link = movie.video 
     return render(request,'ces/trailer.html', {'trailer':trailer_link})
+@login_required
 def select_showtime_home(request,key):
     movie = get_object_or_404(Movies,pk=key)
     title=movie.title
@@ -313,24 +316,32 @@ def select_showtime_home(request,key):
 class TicketForm(ModelForm):
     class Meta:
         model = Tickets
-        exclude = ('show','user','isBookingCancelled')
+        exclude = ('show','user','isBookingCancelled', 'time_created')
 @login_required
 def select_ticket(request,key):
     user = request.user
-    form = TicketForm(request.POST, instance=request.user)
-    show = ScheduleMovie.objects.get(pk=key)
+    form = TicketForm(request.POST)
+    show = get_object_or_404(ScheduleMovie,pk=key)
     seats_left = show.remaining_seats()
+    request.session.set_expiry(180)
+    expiry = request.session.get_expiry_age()
+    expiry_time = request.session.get_expiry_date()
     if request.method=="POST":
         if form.is_valid():
             c=form.cleaned_data['ticket_child']
             a=form.cleaned_data['ticket_adult']
             s=form.cleaned_data['ticket_senior']
             if(c >=0 and a>=0 and s>=0) and (c+a+s>0):
-                if (c+a+s <= seats_left):
-                    show.booked_seats+=c+a+s
-                    show.save()
-                    Tickets.objects.create(user=user,show=show,ticket_child=c,ticket_adult=a,ticket_senior=s)
-                    form.save()
+                if (c+a+s <= seats_left) and (c+a+s <= 10):
+                    if request.session:
+                        show.booked_seats+=c+a+s
+                        show.save()
+                        bookedTicket = form.save(commit=False)
+                        bookedTicket.user = user
+                        bookedTicket.show = show
+                        bookedTicket.time_created = datetime.now()
+                        bookedTicket.save()
+                        return redirect('seat',bookedTicket.pk)
                 elif(c+a+s == seats_left):
                     messages.add_message(request,messages.ERROR, 'Show fullhouse')
                     return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
@@ -339,15 +350,24 @@ def select_ticket(request,key):
                     return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
             else:
                 messages.add_message(request,messages.ERROR, 'Seat quantity should be valid')
-                return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
-
-        messages.add_message(request,messages.SUCCESS, 'Tickets selected')
-        return redirect('home')
+                return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'expiry':expiry,'expiryt':expiry_time,'remain':seats_left})
+            messages.add_message(request,messages.ERROR, f'Session timed out due to in-activity' )
     else:
         form=TicketForm(instance=request.user)
-    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'expiry':expiry, 'expiryt':expiry_time,'remain':seats_left})
 
-def select_ticketz(request, key):
-    show = get_object_or_404(ScheduleMovie,pk=key)
-    context={'show':show}
-    return render(request, 'ces/ticket.html',context)
+@login_required
+def seatselection(request, key):
+    ticket = get_object_or_404(Tickets,pk=key)
+    request.session.set_expiry(180)
+    expiry = request.session.get_expiry_age()
+    expiry_time = request.session.get_expiry_date()
+    show = ticket.show
+    total_ticket_for_booking = ticket.ticket_adult+ticket.ticket_child+ticket.ticket_senior
+    seats_remaining = ticket.show.remaining_seats()
+    context={'ticket':ticket,'qnty':total_ticket_for_booking,'seat_left': seats_remaining,'expiry':expiry, 'expiryt':expiry_time}
+    return render(request, 'ces/seat.html',context)
+
+@login_required
+def pay(request):
+    return render(request,'ces/pay.html')

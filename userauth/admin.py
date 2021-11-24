@@ -67,6 +67,9 @@ class ScheduleMovieAdmin(admin.ModelAdmin):
 class MovieTimeAdmin(admin.ModelAdmin):
     exclude=('showDateTime',)
     readonly_fields=('showDateTime',)
+class TicketAdmin(admin.ModelAdmin):
+    
+    list_display=('user','show','time_created','total_tickets')
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Movies,MovieAdmin)
@@ -74,4 +77,4 @@ admin.site.register(Promotions, PromotionsAdmin)
 admin.site.register(ScheduleMovie,ScheduleMovieAdmin)
 admin.site.register(MovieShowTime)
 admin.site.register(ShowRoom,ShowroomAdmin)
-admin.site.register(Tickets)
+admin.site.register(Tickets, TicketAdmin)

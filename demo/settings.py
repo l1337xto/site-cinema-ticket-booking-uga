@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+        'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,13 +126,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Eastern'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -147,6 +148,9 @@ MEDIA_ROOT = BASE_DIR
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SESSION_EXPIRE_SECONDS = 300
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_TIMEOUT_REDIRECT=''
 STRIPE_PUBLIC_KEY = "pk_test_51JozSrDfslo7WMjTMHHOgGDc0za0DFe01qIQazmbgshmjuyhGOjgFrW4Q4byQLPAHCVXGptPDSEgNmSVcjFZ2XRN00McGHLKr6"
 STRIPE_SECRET_KEY = "sk_test_51JozSrDfslo7WMjTTliepSLxsO1Gg7SdgKzAlnWjMLyP8brx1Jz3yKR7H4xOIhr3cDRYQtk1QMr1tLJvyAvbHq0V001WuM51vy"
 STRIPE_WEBHOOK_SECRET = ""
