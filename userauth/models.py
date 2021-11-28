@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from cryptography.fernet import _MAX_CLOCK_SKEW, Fernet
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.db.models.fields.related import ManyToManyField #Encrypting data
 from mirage import fields
@@ -8,7 +7,8 @@ from django.conf import settings
 from embed_video.fields import EmbedVideoField
 from django.db.models.functions import Now
 from django.core.validators import MaxValueValidator, MinValueValidator
-from datetime import timedelta
+from datetime import datetime
+from django.contrib.postgres.fields import ArrayField
 class User(AbstractUser):
     is_email_verified = models.BooleanField(default=False)
     recieve_promo = models.BooleanField(default=False)
@@ -26,6 +26,21 @@ class User(AbstractUser):
    
     def __str__(self):
         return self.email
+    def card1(self):
+        if self.card_no:
+            return True
+        else:
+            return False
+    def card2(self):
+        if self.card_no2:
+            return True
+        else:
+            return False
+    def card3(self):
+        if self.card_no3:
+            return True
+        else:
+            return False
 
 class Movies(models.Model):
     title = models.CharField(max_length=100,default='')
@@ -81,7 +96,7 @@ class ScheduleMovie(models.Model):
     ticket_senior=models.FloatField(default=6.99)
     booked_seats=models.IntegerField(default=0, validators=[MaxValueValidator(40), MinValueValidator(0)])
     def remaining_seats(self):
-        return 40 - self.booked_seats
+        return self.showroom.numSeats - self.booked_seats
     objects = Scheduler()
     class Meta:
         unique_together = ('showroom', 'MovieTime','PlayingOn')
@@ -89,52 +104,100 @@ class ScheduleMovie(models.Model):
         return self.movie.title
 #################################################################################
 
+class Seat(models.Model):
+    seat_state = (["seat","seat"],["seat selected","seat selected"],["seat occupied","seat occupied"])
+    seat_state_01 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_02 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_03 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_04 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_05 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_06 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_07 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_08 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_09 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_10 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_11 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_12 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_13 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_14 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_15 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_16 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_17 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_18 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    seat_state_19 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_20 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_21 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_22 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_23 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_24 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_25 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_26 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_27 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_28 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_29 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_30 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_31 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_32 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_33 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_34 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_35 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_36 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_37 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_38 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_39 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_40 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_41 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_42 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_43 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_44 = models.CharField(max_length=15,choices=seat_state,default="seat",)
+    seat_state_45 = models.CharField(max_length=15,choices=seat_state,default="seat")
+    seat_state_46 = models.CharField(max_length=15,choices=seat_state,default="seat",)
+    seat_state_47 = models.CharField(max_length=15,default="seat",choices=seat_state)
+    seat_state_48 = models.CharField(default="seat",max_length=15,choices=seat_state)
+    show = models.OneToOneField(ScheduleMovie, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'%s on %s at %s' % (self.show.movie.title,self.show.PlayingOn,self.show.MovieTime)
+
 class Promotions(models.Model):
     less = models.IntegerField()
     is_promo_sent = models.BooleanField(default=False, editable=False)
-    promo_code = models.CharField(max_length=10, unique=True, editable=is_promo_sent,help_text='Promotion code once created is non-editable' )
+    promo_code = models.CharField(max_length=10, unique=True)
     promo_validity = models.DateField()
     def __str__(self):
         return self.promo_code
+    def get_discount(self):
+        return (1-(self.less/100))
 
 class Tickets(models.Model):
-    isBookingCancelled=models.BooleanField(default=False) # if booking is cancelled later then ticket will be cancelled too
+    isBookingDone=models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     show = models.ForeignKey(ScheduleMovie,on_delete=models.CASCADE)
     ticket_child=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     ticket_adult=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     ticket_senior=models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
     time_created = models.DateTimeField(auto_now_add=True,auto_now=False)
+    seat_data = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.user.username
     def total_tickets(self):
         return self.ticket_child+self.ticket_senior+self.ticket_adult
+    def order_total(self):
+        return self.ticket_child*self.show.ticket_child+self.ticket_senior*self.show.ticket_senior+self.ticket_adult*self.show.ticket_adult
+    def should_booking_be_deleted(self):
+        delta = datetime.now() - self.time_created
+        if (delta.total_seconds() > 600) & (self.isBookingDone==False):
+            return True
+        else:
+            return False
+    def order_total_promo(self,key):
+        total = self.order_total()
+        promo = Promotions.objects.get(pk=key)
+        discount = promo.get_discount()
+        total*=discount
+        return round(total,2)
 """
 class Bookings(models.Model):
-    user = models.ManyToManyField(User)
-    showroom = models.ForeignKey(ScheduleMovie,on_delete=models.CASCADE)
-    tickets = models.ManyToManyField(Tickets,on_delete=models.CASCADE)
-
-
-class Seat(models.Model):
-    seat_id = models.CharField(max_length=4)
-    seat_state = models.BooleanField(default=False)
-    cost = models.IntegerField()
-    # show = models.ForeignKey(Theatre, on_delete=models.CASCADE)
-
-
-class Tickets(models.Model):
-    ticket_id = models.CharField(max_length=75)
-    username = models.CharField(max_length=20)
-    seat = models.ForeignKey(Seat, on_delete = models.CASCADE)
-    date = models.DateTimeField()
-    price = models.IntegerField()
-    
-
-    
-class Shows(models.Model):
-    running_movie=models.ManyToManyField(Movies) # a show has many movies with each movie having a data time showroom
-    playing_at = models.ForeignKey(ShowRoom, on_delete=models.CASCADE,default='') # showroom has the seat defined has foreign key 
-    date = models.DateField()
-    time = models.TimeField()
-    duration = models.IntegerField() """
+    tickets = models.OneToOneField(Tickets,on_delete=models.CASCADE)
+    total = models.IntegerField()
+"""

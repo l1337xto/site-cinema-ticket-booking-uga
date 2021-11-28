@@ -33,6 +33,9 @@ class UserAdmin(admin.ModelAdmin):
     list_display=('email','first_name','last_name', 'username','is_email_verified', 'recieve_promo')
     search_fields=('username','email')
 
+class SeatAdmin(admin.ModelAdmin):
+    list_display=('show',)
+
 def send_promo_mail(modeladmin,request,queryset):
         for promouser in queryset:
             queryset.update(is_promo_sent=True)
@@ -42,7 +45,7 @@ def auto_delete_promo_expired(modeladmin, request,queryset):
     Promotions._base_manager.filter(promo_validity__lte=Now()).delete()
     auto_delete_promo_expired.short_description='Delete Expired Promotions'
 class PromotionsAdmin(admin.ModelAdmin):
-    list_display=('promo_code', 'promo_validity','is_promo_sent')
+    list_display=('promo_code', 'promo_validity','is_promo_sent','less')
     Promotions._base_manager.filter(promo_validity__lte=Now()).delete()
     def has_delete_permission(self, request, obj=None):
         return False
@@ -67,9 +70,21 @@ class ScheduleMovieAdmin(admin.ModelAdmin):
 class MovieTimeAdmin(admin.ModelAdmin):
     exclude=('showDateTime',)
     readonly_fields=('showDateTime',)
+
+def auto_delete_expired_tickets(modeladmin, request,queryset):
+    for ticket in queryset:
+        if ticket.should_booking_be_deleted():
+            Tickets.objects.get(pk=ticket.pk).delete()
+    auto_delete_expired_tickets.short_description='Delete Expired Tickets'
+
 class TicketAdmin(admin.ModelAdmin):
-    
+    model=Tickets
     list_display=('user','show','time_created','total_tickets')
+    try_del=Tickets.objects.filter(isBookingDone=True)
+    for every in try_del:
+        if every.should_booking_be_deleted():
+            Tickets.objects.get(pk=every.pk).delete()
+    actions = [auto_delete_expired_tickets]
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Movies,MovieAdmin)
@@ -78,3 +93,4 @@ admin.site.register(ScheduleMovie,ScheduleMovieAdmin)
 admin.site.register(MovieShowTime)
 admin.site.register(ShowRoom,ShowroomAdmin)
 admin.site.register(Tickets, TicketAdmin)
+admin.site.register(Seat,SeatAdmin)

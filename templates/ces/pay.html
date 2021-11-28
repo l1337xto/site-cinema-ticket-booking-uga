@@ -1,8 +1,97 @@
-{%extends '_partials/base.html' %}
-{% load static %}
-{%block title%}
-Pay for your tickets
+{% extends '_partials/base.html' %}{% load static %}{% load crispy_forms_tags %}
+{% block title %}
+Ticket Payments for {{user.username}}
 {% endblock %}
-{% block content%}
 
+{% block content %}
+<div style="background-color: rgba(11, 156, 156, 0.432);">
+<h1 style="text-align: center; padding-bottom: 2em;">Saved Card Details(Pay by clicking on your card)</h1>
+<div class="ui relaxed grid">
+    <div class="three column row">
+      <div class="column">
+        {% if user.card_no %} <a href="">
+        <div class="ui two column grid">
+            <div class="column" style="background-color: #349239;color: #FFFFFF;">
+                {%if user.card_no %}
+                <p> Card Detail   xxxx-xxxx-xxxx-{{user.card_no|slice:"12:16"}}</p>
+                {% endif %}
+            </div>
+            
+            <div class="column row">
+              <div class="column" style="background-color: #349239;color: #FFFFFF;">Expiry : {{user.valid_thru}}-{{user.valid_thru_y}}</div>
+              <div class="column"></div>
+            </div>
+          </div>
+        </a>
+        {% endif %}
+      </div>
+      <div class="column">
+        {% if user.card_no2 %} <a href="">
+        <div class="ui two column grid" >
+          <div class="column" style="background-color: #349239;color: #FFFFFF;">
+              {%if user.card_no2 %}
+              <p> Card Detail   xxxx-xxxx-xxxx-{{user.card_no2|slice:"12:16"}}</p>
+              {% endif %}
+          </div>
+          <div class="column row">
+            <div class="column" style="background-color: #349239;color: #FFFFFF;" >Expiry : {{user.valid_thru1}}-{{user.valid_thru_y1}}</div>
+            <div class="column"></div>
+          </div>
+        </div>
+    </a>
+        {%endif%}
+      </div>
+      <div class="column">
+        {% if user.card_no3 %}
+        <a href="">
+        <div class="ui two column grid">
+          <div class="column" style="background-color: #349239;color: #FFFFFF;">
+              {%if user.card_no3 %}
+              <p> Card Detail   xxxx-xxxx-xxxx-{{user.card_no3|slice:"12:16"}}</p>
+              {% endif %}
+          </div>
+          <div class="column row">
+            <div class="column" style="background-color: #349239;color: #FFFFFF;">Expiry : {{user.valid_thru2}}-{{user.valid_thru_y2}}</div>
+            <div class="column"></div>
+          </div>
+        </div>
+    </a>
+        {% endif %}
+      </div>
+    </div>
+
+
+<div style="background-color: #349239;display: flex;flex-direction: column;color: white;height: 40vh;align-items: center;
+justify-content: center;font-family: 'Lato', 'sans-serif';margin-left: 60px; margin-top: 4em;">
+    <h1 style="text-align: center; padding-bottom: 1em;">Pay with new Card</h1>
+    <fieldset>
+        <form>
+            <h2><p style="color:white;">Payment Information</p></h2>
+            <div>
+                <input type="text" name="lname" placeholder="Credit Card Number" required>*16 digit card number
+            </div>
+            <div>
+                <input type="text" name="expiry" placeholder="Expiry" required>*MM/YY
+            </div>
+            <div>
+                <input type="password" name="cvv" placeholder="CVV" required>Security Code
+            </div>
+            <a style="color:rgb(2, 40, 255); margin-left: 2em;" href="" class="button button2"><h3>Pay</h3></a>
+        </form>
+    </fieldset>    
+</div>
+
+</div>
+<form method="post">
+  {% csrf_token%}
+<input style="color: white;
+background-color: black;
+font-family: Nunito;
+border-radius: 25px;
+padding: 7px;
+font-size: 1em;
+padding-left: 2em;
+padding-right: 2em; margin-left: 70px; margin-top: 20px; margin-bottom: 20px;" type="submit" name="cancel"></input></form>
 {% endblock %}
+
+

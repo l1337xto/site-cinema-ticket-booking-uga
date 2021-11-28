@@ -2,14 +2,16 @@ const container = document.querySelector('.container');
 const seats = document.querySelectorAll('.row .seat:not(.occupied');
 const count = document.getElementById('count');
 const movieSelect = document.getElementById('movie');
-const maxSeats = document.getElementById('limit')
-const payButton = document.getElementById('payButton')
+const maxSeats = document.getElementById('limit');
+const payButton = document.getElementById('payButton');
+let seatsIndex=[];
 let ticketPrice = +movieSelect.value;
-let bookableSeats = +maxSeats.innerText
+let bookableSeats = +maxSeats.innerText;
 payButton.style.display='none';
+
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
-  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+  seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
   console.log(seatsIndex)
   const selectedSeatsCount = selectedSeats.length;
   if(selectedSeatsCount<=bookableSeats){
@@ -26,7 +28,7 @@ function updateSelectedCount() {
   }
 }
 // Seat click event
-container.addEventListener('click', (e) => {
+container.addEventListener('submit', (e) => {
 	const selectedSeats = document.querySelectorAll('.row .seat.selected');
 	const selectedSeatsCount = selectedSeats.length;
 	const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
@@ -41,4 +43,8 @@ container.addEventListener('click', (e) => {
 		e.target.classList.remove('selected');
 		updateSelectedCount();
 	}
+});
+const pay = document.getElementById('pay');
+payButton.addEventListener('click',(e) => {
+	alert("You have selected the seats: "+ seatsIndex);
 });

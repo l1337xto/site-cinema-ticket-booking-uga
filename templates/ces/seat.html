@@ -1,4 +1,3 @@
-
 {% load static %}
     <link rel="stylesheet" href="{% static 'css/seat.css' %}" />
     <div style="background-color: rgba(219, 80, 80, 0.75);border: 0;border-radius: 5px;font-size: 20px;margin-left: 10px;margin-bottom: 30px;padding: 5px 15px 5px 30px;">
@@ -19,99 +18,265 @@
       </li>
 
       <li>
-        <div class="seat selected"></div>
-        <small>Selected</small>
-      </li>
-
-      <li>
         <div class="seat occupied"></div>
         <small>Occupied</small>
       </li>
     </ul>
-
     <div class="container">
       <div class="screen"></div>
       <div class="row">
-        <p class="text">A</p>
-        <div class="seat" name="A1" value="A1"></div>
-        <div class="seat" name="A2" value="A2"></div>
-        <div class="seat" name="A3" value="A3"></div>
-        <div class="seat" name="A4" value="A4"></div>
-        <div class="seat" name="A5" value="A5"></div>
-        <div class="seat" name="A6" value="A6"></div>
-        <div class="seat" name="A7" value="A7"></div>
-        <div class="seat" name="A8" value="A8"></div>
+        <div class="{{seat.seat_state_01}}" name="A1" value="1">1</div>
+        <div class="{{seat.seat_state_02}}" name="A2" value="2">2</div>
+        <div class="{{seat.seat_state_03}}" name="A3" value="3">3</div>
+        <div class="{{seat.seat_state_04}}" name="A4" value="4">4</div>
+        <div class="{{seat.seat_state_05}}" name="A5" value="5">5</div>
+        <div class="{{seat.seat_state_06}}" name="A6" value="6">6</div>
+        <div class="{{seat.seat_state_07}}" name="A7" value="7">7</div>
+        <div class="{{seat.seat_state_08}}" name="A8" value="8">8</div>
       </div>
       <div class="row">
-        <p class="text">B</p>
-        <div class="seat" name="B1" value="B1"></div>
-        <div class="seat" name="B2" value="B2"></div>
-        <div class="seat" name="B3" value="B3"></div>
-        <div class="seat" name="B4" value="B4"></div>
-        <div class="seat" name="B5" value="B5"></div>
-        <div class="seat" name="B6" value="B6"></div>
-        <div class="seat" name="B7" value="B7"></div>
-        <div class="seat" name="B8" value="B8"></div>
+        <div class="{{seat.seat_state_09}}" name="B1" value="9">9</div>
+        <div class ="{{seat.seat_state_10}}"name="B2" value="10">10</div>
+        <div class ="{{seat.seat_state_11}}"name="B3" value="11">11</div>
+        <div class ="{{seat.seat_state_12}}"name="B4" value="12">12</div>
+        <div class ="{{seat.seat_state_13}}"name="B5" value="13">13</div>
+        <div class ="{{seat.seat_state_14}}"name="B6" value="14">14</div>
+        <div class ="{{seat.seat_state_15}}"name="B7" value="15">15</div>
+        <div class ="{{seat.seat_state_16}}"name="B8" value="16">16</div>
       </div>
 
       <div class="row">
-        <p class="text">C</p>
-        <div class="seat" name="C1" value="C1"></div>
-        <div class="seat" name="C2" value="C2"></div>
-        <div class="seat" name="C3" value="C3"></div>
-        <div class="seat" name="C4" value="C4"></div>
-        <div class="seat" name="C5" value="C5"></div>
-        <div class="seat" name="C6" value="C6"></div>
-        <div class="seat" name="C7" value="C7"></div>
-        <div class="seat" name="C8" value="C8"></div>
+        <div class ="{{seat.seat_state_17}}"name="C1" value="17">17</div>
+        <div class ="{{seat.seat_state_18}}"name="C2" value="18">18</div>
+        <div class ="{{seat.seat_state_19}}"name="C3" value="19">19</div>
+        <div class ="{{seat.seat_state_20}}"name="C4" value="20">20</div>
+        <div class ="{{seat.seat_state_21}}"name="C5" value="21">21</div>
+        <div class ="{{seat.seat_state_22}}"name="C6" value="22">22</div>
+        <div class ="{{seat.seat_state_23}}"name="C7" value="23">23</div>
+        <div class ="{{seat.seat_state_24}}"name="C8" value="24">24</div>
       </div>
 
       <div class="row">
-        <p class="text">D</p>
-        <div class="seat" name="D1" value="D1"></div>
-        <div class="seat" name="D2" value="D2"></div>
-        <div class="seat" name="D3" value="D3"></div>
-        <div class="seat" name="D4" value="D4"></div>
-        <div class="seat" name="D5" value="D5"></div>
-        <div class="seat" name="D6" value="D6"></div>
-        <div class="seat" name="D7" value="D7"></div>
-        <div class="seat" name="D8" value="D8"></div>
+        <div class ="{{seat.seat_state_25}}"name="D1" value="25">25</div>
+        <div class ="{{seat.seat_state_26}}"name="D2" value="26">26</div>
+        <div class ="{{seat.seat_state_27}}"name="D3" value="27">27</div>
+        <div class ="{{seat.seat_state_28}}"name="D4" value="28">28</div>
+        <div class ="{{seat.seat_state_29}}"name="D5" value="29">29</div>
+        <div class ="{{seat.seat_state_30}}"name="D6" value="30">30</div>
+        <div class ="{{seat.seat_state_31}}"name="D7" value="31">31</div>
+        <div class ="{{seat.seat_state_32}}"name="D8" value="32">32</div>
       </div>
 
       <div class="row">
-        <p class="text">E</p>
-        <div class="seat" name="E1" value="E1"></div>
-        <div class="seat" name="E2" value="E2"></div>
-        <div class="seat" name="E3" value="E3"></div>
-        <div class="seat" name="E4" value="E4"></div>
-        <div class="seat" name="E5" value="E5"></div>
-        <div class="seat" name="E6" value="E6"></div>
-        <div class="seat" name="E7" value="E7"></div>
-        <div class="seat" name="E8" value="E8"></div>
+        <div class ="{{seat.seat_state_33}}" name="E1" value="33">33</div>
+        <div class ="{{seat.seat_state_34}}" name="E2" value="34">34</div>
+        <div class ="{{seat.seat_state_35}}" name="E3" value="35">35</div>
+        <div class ="{{seat.seat_state_36}}" name="E4" value="36">36</div>
+        <div class ="{{seat.seat_state_37}}" name="E5" value="37">37</div>
+        <div class ="{{seat.seat_state_38}}" name="E6" value="38">38</div>
+        <div class ="{{seat.seat_state_39}}" name="E7" value="39">39</div>
+        <div class ="{{seat.seat_state_40}}" name="E8" value="40">40</div>
       </div>
 
       <div class="row">
-        <p class="text">F</p>
-        <div class="seat" name="F1" value="F1"></div>
-        <div class="seat" name="F2" value="F2"></div>
-        <div class="seat" name="F3" value="F3"></div>
-        <div class="seat" name="F4" value="F4"></div>
-        <div class="seat" name="F5" value="F5"></div>
-        <div class="seat" name="F6" value="F6"></div>
-        <div class="seat" name="F7" value="F7"></div>
-        <div class="seat" name="F8" value="F8"></div>
+        <div class ="{{seat.seat_state_41}}"name="F1" value="41">41</div>
+        <div class ="{{seat.seat_state_42}}"name="F2" value="42">42</div>
+        <div class ="{{seat.seat_state_43}}"name="F3" value="43">43</div>
+        <div class ="{{seat.seat_state_44}}"name="F4" value="44">44</div>
+        <div class ="{{seat.seat_state_45}}"name="F5" value="45">45</div>
+        <div class ="{{seat.seat_state_46}}"name="F6" value="46">46</div>
+        <div class ="{{seat.seat_state_47}}"name="F7" value="47">47</div>
+        <div class ="{{seat.seat_state_48}}"name="F8" value="48">48</div>
       </div>
-    <pre style="color:rgb(255, 255, 255);font-size:105%">  1   2     3    4    5    6    7   8</pre>
     </div>
-    <div style="background-color: rgba(105, 80, 219, 0.75);border: 0;border-radius: 5px;font-size: 20px;margin-left: 10px;margin-bottom: 30px;padding: 5px 15px 5px 30px;">
+<!--     <div style="background-color: rgba(105, 80, 219, 0.75);border: 0;border-radius: 5px;font-size: 20px;margin-left: 10px;margin-bottom: 30px;padding: 5px 15px 5px 30px;">
     <p class="text">
       You have selected <span id="count">0</span> seats out of <span id="limit">{{qnty}}</span>
-      This show has {{seat_left}} tickets left.
     </p>
-    </div>
+    </div> -->
+    {% if allow_pay %}
     <div id="payButton">
-      <a id="continue" href="{% url 'pay' %}">Proceed to payment </a>
+      <a id="continue" href="{% url 'pay' ticket.pk %}">Proceed to payment </a>
     </div>
-
+    {% endif %}
     <script src="{% static 'js/script.js' %}"></script>
   </body>
+  <div class="seat-option">
+  {% if not allow_pay %}
+    <form method="get">
+      <label for="browser">Choose your seat:</label>
+      <input type="number" name="seat_0" list="browsers" id="browser" max="48" required>
+      <datalist id="browsers">
+        {% if seat.seat_state_01 == "seat" %}
+            <option style="font-size: 24px;" value="1">1</option>
+            {% endif %}
+            {% if seat.seat_state_02 == "seat" %}
+            <option style="font-size: 24px;" value="2">2</option>
+            {% endif %}
+            {% if seat.seat_state_03 == "seat" %}
+            <option style="font-size: 24px;" value="3">3</option>
+            {% endif %}
+            {% if seat.seat_state_04 == "seat" %}
+            <option style="font-size: 24px;" value="4">4</option>
+            {% endif %}
+            {% if seat.seat_state_05 == "seat" %}
+            <option style="font-size: 24px;" value="5">5</option>
+            {% endif %}
+            {% if seat.seat_state_06 == "seat" %}
+            <option style="font-size: 24px;" value="6">6</option>
+            {% endif %}
+            {% if seat.seat_state_07 == "seat" %}
+            <option style="font-size: 24px;" value="7">7</option>
+            {% endif %}
+            {% if seat.seat_state_08 == "seat" %}
+            <option style="font-size: 24px;" value="8">8</option>
+            {% endif %}
+            {% if seat.seat_state_09 == "seat" %}
+            <option style="font-size: 24px;" value="9">9</option>
+            {% endif %}
+            {% if seat.seat_state_10 == "seat" %}
+            <option style="font-size: 24px;" value="10">10</option>
+            {% endif %}
+            {% if seat.seat_state_11 == "seat" %}
+            <option style="font-size: 24px;" value="11">11</option>
+            {% endif %}
+            {% if seat.seat_state_12 == "seat" %}
+            <option style="font-size: 24px;" value="12">12</option>
+            {% endif %}
+            {% if seat.seat_state_13 == "seat" %}
+            <option style="font-size: 24px;" value="13">13</option>
+            {% endif %}
+            {% if seat.seat_state_14 == "seat" %}
+            <option style="font-size: 24px;" value="14">14</option>
+            {% endif %}
+            {% if seat.seat_state_15 == "seat" %}
+            <option style="font-size: 24px;" value="15">15</option>
+            {% endif %}
+            {% if seat.seat_state_16 == "seat" %}
+            <option style="font-size: 24px;" value="16">16</option>
+            {% endif %}
+            {% if seat.seat_state_17 == "seat" %}
+            <option style="font-size: 24px;" value="17">17</option>
+            {% endif %}
+            {% if seat.seat_state_18 == "seat" %}
+            <option style="font-size: 24px;" value="18">18</option>
+            {% endif %}
+            {% if seat.seat_state_19 == "seat" %}
+            <option style="font-size: 24px;" value="19">19</option>
+            {% endif %}
+            {% if seat.seat_state_20 == "seat" %}
+            <option style="font-size: 24px;" value="20">20</option>
+            {% endif %}
+            {% if seat.seat_state_21 == "seat" %}
+            <option style="font-size: 24px;" value="21">21</option>
+            {% endif %}
+            {% if seat.seat_state_22 == "seat" %}
+            <option style="font-size: 24px;" value="22">22</option>
+            {% endif %}
+            {% if seat.seat_state_23 == "seat" %}
+            <option style="font-size: 24px;" value="23">23</option>
+            {% endif %}
+            {% if seat.seat_state_24 == "seat" %}
+            <option style="font-size: 24px;" value="24">24</option>
+            {% endif %}
+            {% if seat.seat_state_25 == "seat" %}
+            <option style="font-size: 24px;" value="25">25</option>
+            {% endif %}
+            {% if seat.seat_state_26 == "seat" %}
+            <option style="font-size: 24px;" value="26">26</option>
+            {% endif %}
+            {% if seat.seat_state_27 == "seat" %}
+            <option style="font-size: 24px;" value="27">27</option>
+            {% endif %}
+            {% if seat.seat_state_28 == "seat" %}
+            <option style="font-size: 24px;" value="28">28</option>
+            {% endif %}
+            {% if seat.seat_state_29 == "seat" %}
+            <option style="font-size: 24px;" value="29">29</option>
+            {% endif %}
+            {% if seat.seat_state_30 == "seat" %}
+            <option style="font-size: 24px;" value="30">30</option>
+            {% endif %}
+            {% if seat.seat_state_31 == "seat" %}
+            <option style="font-size: 24px;" value="31">31</option>
+            {% endif %}
+            {% if seat.seat_state_32 == "seat" %}
+            <option style="font-size: 24px;" value="32">32</option>
+            {% endif %}
+            {% if seat.seat_state_33 == "seat" %}
+            <option style="font-size: 24px;" value="33">33</option>
+            {% endif %}
+            {% if seat.seat_state_34 == "seat" %}
+            <option style="font-size: 24px;" value="34">34</option>
+            {% endif %}
+            {% if seat.seat_state_35 == "seat" %}
+            <option style="font-size: 24px;" value="35">35</option>
+            {% endif %}
+            {% if seat.seat_state_36 == "seat" %}
+            <option style="font-size: 24px;" value="36">36</option>
+            {% endif %}
+            {% if seat.seat_state_37 == "seat" %}
+            <option style="font-size: 24px;" value="37">37</option>
+            {% endif %}
+            {% if seat.seat_state_38 == "seat" %}
+            <option style="font-size: 24px;" value="38">38</option>
+            {% endif %}
+            {% if seat.seat_state_39 == "seat" %}
+            <option style="font-size: 24px;" value="39">39</option>
+            {% endif %}
+            {% if seat.seat_state_40 == "seat" %}
+            <option style="font-size: 24px;" value="40">40</option>
+            {% endif %}
+            {% if seat.seat_state_41 == "seat" %}
+            <option style="font-size: 24px;" value="41">41</option>
+            {% endif %}
+            {% if seat.seat_state_42 == "seat" %}
+            <option style="font-size: 24px;" value="42">42</option>
+            {% endif %}
+            {% if seat.seat_state_43 == "seat" %}
+            <option style="font-size: 24px;" value="43">43</option>
+            {% endif %}
+            {% if seat.seat_state_44 == "seat" %}
+            <option style="font-size: 24px;" value="44">44</option>
+            {% endif %}
+            {% if seat.seat_state_45 == "seat" %}
+            <option style="font-size: 24px;" value="45">45</option>
+            {% endif %}
+            {% if seat.seat_state_46 == "seat" %}
+            <option style="font-size: 24px;" value="46">46</option>
+            {% endif %}
+            {% if seat.seat_state_47 == "seat" %}
+            <option style="font-size: 24px;" value="47">47</option>
+            {% endif %}
+            {% if seat.seat_state_48 == "seat" %}
+            <option style="font-size: 24px;" value="48">48</option>
+            {% endif %}
+      </datalist>
+      <input type="submit" name="not">
+    </form>
+    {% endif %}
+    {% if not allow_pay %}
+    <p>Please select {{allowed_seats}} seats from the dropdown above.</p>
+    {% endif %}
+<div>
+    {% for theseat in seats %}
+      {% if forloop.first %}
+        Your Seats are: {{theseat}}
+      {% else %}
+      {{theseat}}
+      {%endif%}
+    {% endfor %}
+  </div>
+    </div>
+    {% if saved_seats %}
+    <h1 style="align-items: flex-start;">Your Seats are: </h1>
+    {% for tsaved_seats in saved_seats %}
+      <li style="text-align: center;">Seat No.{{forloop.counter}} : {{tsaved_seats}}</li>
+    {% endfor %}
+  {% endif %}
+   <div>
+    <form method="post">
+      {% csrf_token %}
+      <p>Cancel? --> <input type="submit" name="cancel"></input></p>
+    </form>
+  </div>

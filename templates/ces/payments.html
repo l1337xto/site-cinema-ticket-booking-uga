@@ -1,0 +1,79 @@
+{% load static %}
+{% load crispy_forms_tags %}
+    <link rel="stylesheet" href="{% static 'css/payments.css' %}">
+    <body>
+        <main>
+            <h1>Checkout</h1>
+            <div class="containers">
+                <fieldset style="padding-bottom: 250px;">
+                    <form>
+                        <h2><p style="color:white;">Payment Information</p></h2>
+
+                        <a href="{% url 'pay_saved' ticket.pk %}" class="button button1">Pay by Using your Saved Card or with a New Card</a>
+                        
+                        <!-- <h2>OR</h2>
+                        <div>
+                            <input type="text" name="lname" placeholder="Credit Card Number">
+                        </div>
+                        <div>
+                            <input type="text" name="expiry" placeholder="Expiry">
+                        </div>
+                        <div>
+                            <input type="password" name="cvv" placeholder="CVV">
+                        </div>
+                        <a href="" class="button button2">Pay</a> -->
+                    </form>
+                </fieldset>
+
+                <div style="font-size: 24px;margin-left: 650px ;text-align: center;height:35px; width: 200px; border-bottom-left-radius: 9px; border-top-left-radius: 9px;border-top-right-radius: 9px;border-bottom-right-radius: 9px; background-color: rgba(51, 255, 0, 0.247);">
+                    <form method="post">
+                      {% csrf_token %}
+                      <p style="color: bisque;">Cancel? --> <input type="submit" name="cancel"></input></p>
+                    </form>
+                </div>
+                    <div style="position: absolute; right:80px; top: 400px">
+                        {% if not off%}
+                        <h1>Total: ${{ticket.order_total|floatformat:2}}</h1>
+                        {%else%}
+                        <h1>Total: ${{off}}</h1>
+                        {%endif%}
+                    </div>
+            </div>
+
+            <h1>Summary for your tickets on {{ticket.time_created}}</h1>
+            <div class="containers">
+                <fieldset>
+                    <form>
+                        <h2><p style="color:white;">Order Summary</p></h2>
+                        <h3>
+                            <p>Tickets for {{ticket.show.movie.title}}</p>
+                            <p> on {{ticket.show.PlayingOn}} at {{ticket.show.MovieTime}} in showroom {{ticket.show.showroom.showroom}}</p>
+                            <p style="color:yellow;">You have booked {{ticket.ticket_child}} tickets for child, {{ticket.ticket_adult}} tickets for adult and {{ticket.ticket_senior}} tickets for senior</p>
+                            <p style="color:green;">Ticket for Child=${{ticket.show.ticket_child}},  Adult=${{ticket.show.ticket_adult}}, Senior=${{ticket.show.ticket_senior}}</p>
+                            <p>Your seat number are: {{ticket.seat_data}}</p>
+                        </h3>
+                    </form>
+                </fieldset>
+            </div>
+            
+        </main>
+    </body>
+    <div style="position: absolute; top: 180px;right:600px; background-color: rgba(0, 153, 255, 0.452); width: 250px; height: 100px;">
+        <div>
+            {%if form %}
+            <h3>Have a promo code?</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" value="submit">Apply Promo</button>
+            </form>
+            {%endif%}
+        </div>
+        {% if off %}
+        <h1>Applied Promo</h1>
+        {%endif%}
+        <h1>{{error_me}}</h1>
+    </div>
+<!-- <footer>
+    <p><span>&copy; 2021 Cinema E Booking System</span></p>
+</footer> -->

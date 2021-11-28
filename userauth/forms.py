@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import Form, ModelForm, DateField, widgets, TextInput, EmailInput
+from django.forms import widgets
 from .models import *
 
 class MovieSearchForm(forms.ModelForm):
@@ -16,3 +16,5 @@ class MovieSearchForm(forms.ModelForm):
             'title' : widgets.TextInput(attrs={'placeholder': 'Movie Name', 'class':'form-control','style': 'width: 300px;','color':'black'}),
             'genre' : widgets.Select(attrs={'placeholder':'Category','class' : 'form-control','style':'width: 160px'})
         }
+class PromotionForm(forms.Form):
+    promo_code = forms.CharField(label='PromoCode', max_length=100)

@@ -21,3 +21,1319 @@ sqlparse==0.4.2
 tqdm==4.62.3
 urllib3==1.26.7
 validate-email==1.3
+
+ if 'seat_1' in request.GET:
+            seat01 = request.GET['seat_1']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_2' in request.GET:
+            seat01 = request.GET['seat_2']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_3' in request.GET:
+            seat01 = request.GET['seat_3']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_4' in request.GET:
+            seat01 = request.GET['seat_4']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_5' in request.GET:
+            seat01 = request.GET['seat_5']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_6' in request.GET:
+            seat01 = request.GET['seat_6']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_7' in request.GET:
+            seat01 = request.GET['seat_7']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_8' in request.GET:
+            seat01 = request.GET['seat_8']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+        if 'seat_9' in request.GET:
+            seat01 = request.GET['seat_9']
+            if seat01=='1':
+                seat.seat_state_01 = "seat occupied"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat occupied"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat occupied"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat occupied"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat occupied"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat occupied"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat occupied"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat occupied"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat occupied"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat occupied"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat occupied"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat occupied"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat occupied"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat occupied"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat occupied"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat occupied"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat occupied"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat occupied"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat occupied"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat occupied"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat occupied"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat occupied"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat occupied"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat occupied"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat occupied"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat occupied"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat occupied"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat occupied"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat occupied"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat occupied"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat occupied"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat occupied"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat occupied"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat occupied"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat occupied"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat occupied"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat occupied"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat occupied"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat occupied"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat occupied"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat occupied"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat occupied"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat occupied"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat occupied"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat occupied"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat occupied"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat occupied"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat occupied"
+                seat.save()
+

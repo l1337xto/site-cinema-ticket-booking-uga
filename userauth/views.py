@@ -1,5 +1,8 @@
+import re
 from django import forms
 from django.contrib import auth
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import EMPTY_VALUES
 from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.contrib import messages
@@ -15,13 +18,13 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str, force_text, DjangoUnicodeDecodeError
 from .utils import generate_token
-from .forms import MovieSearchForm
+from .forms import MovieSearchForm, PromotionForm
 from django.core.mail import EmailMessage
 from django.conf import settings
 import threading #Sends emails in the background 
 from django.forms import ModelForm
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, logout_then_login
 from django.db.models.functions import Now
 from datetime import datetime, timezone, timedelta
 #Any.objects.filter(exp_date__gt=Now())
@@ -316,14 +319,14 @@ def select_showtime_home(request,key):
 class TicketForm(ModelForm):
     class Meta:
         model = Tickets
-        exclude = ('show','user','isBookingCancelled', 'time_created')
+        exclude = ('show','user','isBookingDone', 'time_created','seat_data')
 @login_required
 def select_ticket(request,key):
     user = request.user
     form = TicketForm(request.POST)
     show = get_object_or_404(ScheduleMovie,pk=key)
     seats_left = show.remaining_seats()
-    request.session.set_expiry(180)
+    request.session.set_expiry(600)
     expiry = request.session.get_expiry_age()
     expiry_time = request.session.get_expiry_date()
     if request.method=="POST":
@@ -344,10 +347,10 @@ def select_ticket(request,key):
                         return redirect('seat',bookedTicket.pk)
                 elif(c+a+s == seats_left):
                     messages.add_message(request,messages.ERROR, 'Show fullhouse')
-                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'remain':seats_left})
                 else:
                     messages.add_message(request,messages.ERROR, 'Seats overflow, try selecting lesser seats')
-                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show})
+                    return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'remain':seats_left})
             else:
                 messages.add_message(request,messages.ERROR, 'Seat quantity should be valid')
                 return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'expiry':expiry,'expiryt':expiry_time,'remain':seats_left})
@@ -355,19 +358,386 @@ def select_ticket(request,key):
     else:
         form=TicketForm(instance=request.user)
     return render(request, 'ces/ticket.html',{'user':user,'form':form,'show':show,'expiry':expiry, 'expiryt':expiry_time,'remain':seats_left})
-
+chosen_seats=[]
+saved_seats=[]
 @login_required
 def seatselection(request, key):
     ticket = get_object_or_404(Tickets,pk=key)
-    request.session.set_expiry(180)
+    show = ScheduleMovie.objects.get(pk=ticket.show.pk)
+    if not (Seat.objects.filter(show__pk=show.pk)):
+        seat=Seat.objects.create(show=show)
+    else:
+        seat=Seat.objects.get(show__pk=show.pk)
     expiry = request.session.get_expiry_age()
     expiry_time = request.session.get_expiry_date()
-    show = ticket.show
     total_ticket_for_booking = ticket.ticket_adult+ticket.ticket_child+ticket.ticket_senior
-    seats_remaining = ticket.show.remaining_seats()
-    context={'ticket':ticket,'qnty':total_ticket_for_booking,'seat_left': seats_remaining,'expiry':expiry, 'expiryt':expiry_time}
+    seats_remaining = show.remaining_seats()
+    allow_payment=False
+    if not request.method == "POST":
+        saved_seats.clear()
+     #   chosen_seats.clear()
+    if request.method == "GET":
+        if len(chosen_seats) <= total_ticket_for_booking:
+            if 'seat_0' in request.GET:
+                seat01 = request.GET['seat_0']
+                if seat01=='1':
+                    seat.seat_state_01 = "seat occupied"
+                    seat.save()
+                if seat01=='2':
+                    seat.seat_state_02 = "seat occupied"
+                    seat.save()
+                if seat01=='3':
+                    seat.seat_state_03 = "seat occupied"
+                    seat.save()
+                if seat01=='4':
+                    seat.seat_state_04 = "seat occupied"
+                    seat.save()
+                if seat01=='5':
+                    seat.seat_state_05 = "seat occupied"
+                    seat.save()
+                if seat01=='6':
+                    seat.seat_state_06 = "seat occupied"
+                    seat.save()
+                if seat01=='7':
+                    seat.seat_state_07 = "seat occupied"
+                    seat.save()
+                if seat01=='8':
+                    seat.seat_state_08 = "seat occupied"
+                    seat.save()
+                if seat01=='9':
+                    seat.seat_state_09 = "seat occupied"
+                    seat.save()
+                if seat01=='10':
+                    seat.seat_state_10 = "seat occupied"
+                    seat.save()
+                if seat01=='11':
+                    seat.seat_state_11 = "seat occupied"
+                    seat.save()
+                if seat01=='12':
+                    seat.seat_state_12 = "seat occupied"
+                    seat.save()
+                if seat01=='13':
+                    seat.seat_state_13 = "seat occupied"
+                    seat.save()
+                if seat01=='14':
+                    seat.seat_state_14 = "seat occupied"
+                    seat.save()
+                if seat01=='15':
+                    seat.seat_state_15 = "seat occupied"
+                    seat.save()
+                if seat01=='16':
+                    seat.seat_state_16 = "seat occupied"
+                    seat.save()
+                if seat01=='17':
+                    seat.seat_state_17 = "seat occupied"
+                    seat.save()
+                if seat01=='18':
+                    seat.seat_state_18 = "seat occupied"
+                    seat.save()
+                if seat01=='19':
+                    seat.seat_state_19 = "seat occupied"
+                    seat.save()
+                if seat01=='20':
+                    seat.seat_state_20 = "seat occupied"
+                    seat.save()
+                if seat01=='21':
+                    seat.seat_state_21 = "seat occupied"
+                    seat.save()
+                if seat01=='22':
+                    seat.seat_state_22 = "seat occupied"
+                    seat.save()
+                if seat01=='23':
+                    seat.seat_state_23 = "seat occupied"
+                    seat.save()
+                if seat01=='24':
+                    seat.seat_state_24 = "seat occupied"
+                    seat.save()
+                if seat01=='25':
+                    seat.seat_state_25 = "seat occupied"
+                    seat.save()
+                if seat01=='26':
+                    seat.seat_state_26 = "seat occupied"
+                    seat.save()
+                if seat01=='27':
+                    seat.seat_state_27 = "seat occupied"
+                    seat.save()
+                if seat01=='28':
+                    seat.seat_state_28 = "seat occupied"
+                    seat.save()
+                if seat01=='29':
+                    seat.seat_state_29 = "seat occupied"
+                    seat.save()
+                if seat01=='30':
+                    seat.seat_state_30 = "seat occupied"
+                    seat.save()
+                if seat01=='31':
+                    seat.seat_state_31 = "seat occupied"
+                    seat.save()
+                if seat01=='32':
+                    seat.seat_state_32 = "seat occupied"
+                    seat.save()
+                if seat01=='33':
+                    seat.seat_state_33 = "seat occupied"
+                    seat.save()
+                if seat01=='34':
+                    seat.seat_state_34 = "seat occupied"
+                    seat.save()
+                if seat01=='35':
+                    seat.seat_state_35 = "seat occupied"
+                    seat.save()
+                if seat01=='36':
+                    seat.seat_state_36 = "seat occupied"
+                    seat.save()
+                if seat01=='37':
+                    seat.seat_state_37 = "seat occupied"
+                    seat.save()
+                if seat01=='38':
+                    seat.seat_state_38 = "seat occupied"
+                    seat.save()
+                if seat01=='39':
+                    seat.seat_state_39 = "seat occupied"
+                    seat.save()
+                if seat01=='40':
+                    seat.seat_state_40 = "seat occupied"
+                    seat.save()
+                if seat01=='41':
+                    seat.seat_state_41 = "seat occupied"
+                    seat.save()
+                if seat01=='42':
+                    seat.seat_state_42 = "seat occupied"
+                    seat.save()
+                if seat01=='43':
+                    seat.seat_state_43 = "seat occupied"
+                    seat.save()
+                if seat01=='44':
+                    seat.seat_state_44 = "seat occupied"
+                    seat.save()
+                if seat01=='45':
+                    seat.seat_state_45 = "seat occupied"
+                    seat.save()
+                if seat01=='46':
+                    seat.seat_state_46 = "seat occupied"
+                    seat.save()
+                if seat01=='47':
+                    seat.seat_state_47 = "seat occupied"
+                    seat.save()
+                if seat01=='48':
+                    seat.seat_state_48 = "seat occupied"
+                    seat.save()
+                chosen_seats.append(seat01)
+                chosen_seats.sort()
+    if len(chosen_seats) == total_ticket_for_booking:
+        allow_payment=True
+        temp_seat=''
+        for seats_xYx in chosen_seats:
+            saved_seats.append(seats_xYx)
+            temp_seat+=str(seats_xYx)+' '
+        ticket.seat_data=temp_seat
+        ticket.save()
+        chosen_seats.clear()   
+    saved_seats.sort()
+    allowed_seats = total_ticket_for_booking - len(chosen_seats)
+    if request.method =="POST":
+        if request.POST.get('cancel'):
+            showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
+            showtoedit.booked_seats-=ticket.total_tickets()
+            showtoedit.save()
+            Tickets.objects.get(pk=ticket.pk).delete()
+            for seat01 in saved_seats:
+                if seat01=='1':
+                    seat.seat_state_01 = "seat"
+                    seat.save()
+                if seat01=='2':
+                    seat.seat_state_02 = "seat"
+                    seat.save()
+                if seat01=='3':
+                    seat.seat_state_03 = "seat"
+                    seat.save()
+                if seat01=='4':
+                    seat.seat_state_04 = "seat"
+                    seat.save()
+                if seat01=='5':
+                    seat.seat_state_05 = "seat"
+                    seat.save()
+                if seat01=='6':
+                    seat.seat_state_06 = "seat"
+                    seat.save()
+                if seat01=='7':
+                    seat.seat_state_07 = "seat"
+                    seat.save()
+                if seat01=='8':
+                    seat.seat_state_08 = "seat"
+                    seat.save()
+                if seat01=='9':
+                    seat.seat_state_09 = "seat"
+                    seat.save()
+                if seat01=='10':
+                    seat.seat_state_10 = "seat"
+                    seat.save()
+                if seat01=='11':
+                    seat.seat_state_11 = "seat"
+                    seat.save()
+                if seat01=='12':
+                    seat.seat_state_12 = "seat"
+                    seat.save()
+                if seat01=='13':
+                    seat.seat_state_13 = "seat"
+                    seat.save()
+                if seat01=='14':
+                    seat.seat_state_14 = "seat"
+                    seat.save()
+                if seat01=='15':
+                    seat.seat_state_15 = "seat"
+                    seat.save()
+                if seat01=='16':
+                    seat.seat_state_16 = "seat"
+                    seat.save()
+                if seat01=='17':
+                    seat.seat_state_17 = "seat"
+                    seat.save()
+                if seat01=='18':
+                    seat.seat_state_18 = "seat"
+                    seat.save()
+                if seat01=='19':
+                    seat.seat_state_19 = "seat"
+                    seat.save()
+                if seat01=='20':
+                    seat.seat_state_20 = "seat"
+                    seat.save()
+                if seat01=='21':
+                    seat.seat_state_21 = "seat"
+                    seat.save()
+                if seat01=='22':
+                    seat.seat_state_22 = "seat"
+                    seat.save()
+                if seat01=='23':
+                    seat.seat_state_23 = "seat"
+                    seat.save()
+                if seat01=='24':
+                    seat.seat_state_24 = "seat"
+                    seat.save()
+                if seat01=='25':
+                    seat.seat_state_25 = "seat"
+                    seat.save()
+                if seat01=='26':
+                    seat.seat_state_26 = "seat"
+                    seat.save()
+                if seat01=='27':
+                    seat.seat_state_27 = "seat"
+                    seat.save()
+                if seat01=='28':
+                    seat.seat_state_28 = "seat"
+                    seat.save()
+                if seat01=='29':
+                    seat.seat_state_29 = "seat"
+                    seat.save()
+                if seat01=='30':
+                    seat.seat_state_30 = "seat"
+                    seat.save()
+                if seat01=='31':
+                    seat.seat_state_31 = "seat"
+                    seat.save()
+                if seat01=='32':
+                    seat.seat_state_32 = "seat"
+                    seat.save()
+                if seat01=='33':
+                    seat.seat_state_33 = "seat"
+                    seat.save()
+                if seat01=='34':
+                    seat.seat_state_34 = "seat"
+                    seat.save()
+                if seat01=='35':
+                    seat.seat_state_35 = "seat"
+                    seat.save()
+                if seat01=='36':
+                    seat.seat_state_36 = "seat"
+                    seat.save()
+                if seat01=='37':
+                    seat.seat_state_37 = "seat"
+                    seat.save()
+                if seat01=='38':
+                    seat.seat_state_38 = "seat"
+                    seat.save()
+                if seat01=='39':
+                    seat.seat_state_39 = "seat"
+                    seat.save()
+                if seat01=='40':
+                    seat.seat_state_40 = "seat"
+                    seat.save()
+                if seat01=='41':
+                    seat.seat_state_41 = "seat"
+                    seat.save()
+                if seat01=='42':
+                    seat.seat_state_42 = "seat"
+                    seat.save()
+                if seat01=='43':
+                    seat.seat_state_43 = "seat"
+                    seat.save()
+                if seat01=='44':
+                    seat.seat_state_44 = "seat"
+                    seat.save()
+                if seat01=='45':
+                    seat.seat_state_45 = "seat"
+                    seat.save()
+                if seat01=='46':
+                    seat.seat_state_46 = "seat"
+                    seat.save()
+                if seat01=='47':
+                    seat.seat_state_47 = "seat"
+                    seat.save()
+                if seat01=='48':
+                    seat.seat_state_48 = "seat"
+                    seat.save()
+                messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration for seats: %s' % str(saved_seats) )
+                return redirect('home')
+    if(ticket.should_booking_be_deleted()):
+        ticket.delete()
+    context={'allowed_seats':allowed_seats,'saved_seats':saved_seats,'seats':chosen_seats,'allow_pay':allow_payment,'range': range(total_ticket_for_booking),'ticket':ticket,'qnty':total_ticket_for_booking,'seat_left': seats_remaining,'expiry':expiry, 'expiryt':expiry_time,'seat':seat}
     return render(request, 'ces/seat.html',context)
 
 @login_required
-def pay(request):
-    return render(request,'ces/pay.html')
+def pay(request, key):
+    ticket = get_object_or_404(Tickets,pk=key)
+    if(ticket.should_booking_be_deleted()):
+        ticket.delete()
+    if request.method == "POST":
+        if request.POST.get('cancel'):
+            showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
+            showtoedit.booked_seats-=ticket.total_tickets()
+            showtoedit.save()
+            Tickets.objects.get(pk=ticket.pk).delete()
+            messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration')
+            return redirect('home')
+        form=PromotionForm(request.POST)
+        discount=0
+        if form.is_valid():
+            code = form.cleaned_data['promo_code']
+            error_me=''
+            promo=Promotions.objects.filter(promo_code=code)
+            if promo:
+                promo = promo.first()
+                discount=ticket.order_total_promo(promo.pk)
+            else:
+                error_me = 'Promo Invalid'
+            contextn={'ticket':ticket,'off':discount,'code':code,'promo':promo,'error_me':error_me,'form':form}
+            return render(request,'ces/payments.html',contextn)
+        contextn={'form':form,'ticket':ticket,'off':discount}
+        return render(request,'ces/payments.html',contextn)
+    else:
+        form = PromotionForm()
+        context={'ticket':ticket,'form':form}
+        return render(request,'ces/payments.html',context)
+@login_required
+def pay_saved(request,key):
+    user = request.user
+    ticket = get_object_or_404(Tickets,pk=key)
+    if request.method == "POST":
+        if request.POST.get('cancel'):
+            showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
+            showtoedit.booked_seats-=ticket.total_tickets()
+            showtoedit.save()
+            Tickets.objects.get(pk=ticket.pk).delete()
+            messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration')
+            return redirect('home') 
+    context={'ticket':ticket,'user':user}
+    return render(request,'ces/pay.html',context)
