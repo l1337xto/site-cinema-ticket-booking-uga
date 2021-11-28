@@ -52,7 +52,7 @@ class PromotionsAdmin(admin.ModelAdmin):
         
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ['promo_code', 'promo_validity']
+            return ['promo_code', 'promo_validity','less']
         else:
             return []
     actions = [send_promo_mail, auto_delete_promo_expired]

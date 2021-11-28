@@ -573,7 +573,6 @@ def seatselection(request, key):
                     seat.seat_state_48 = "seat occupied"
                     seat.save()
                     chosen_seats.append(seat01)
-                
                 chosen_seats.sort()
     if len(chosen_seats) == total_ticket_for_booking:
         allow_payment=True
@@ -585,16 +584,179 @@ def seatselection(request, key):
         ticket.seat_data=temp_seat
         ticket.save()
         chosen_seats.clear()   
-    saved_seats.sort()
     allowed_seats = total_ticket_for_booking - len(chosen_seats)
     #############TICKET CANCEL################
     if request.method =="POST":
+    #    if request.POST.get('cancel'):
+        showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
+        showtoedit.booked_seats-=ticket.total_tickets()
+        showtoedit.save()
+        Tickets.objects.get(pk=ticket.pk).delete()
+        for seat01 in saved_seats:
+            if seat01=='1':
+                seat.seat_state_01 = "seat"
+                seat.save()
+            if seat01=='2':
+                seat.seat_state_02 = "seat"
+                seat.save()
+            if seat01=='3':
+                seat.seat_state_03 = "seat"
+                seat.save()
+            if seat01=='4':
+                seat.seat_state_04 = "seat"
+                seat.save()
+            if seat01=='5':
+                seat.seat_state_05 = "seat"
+                seat.save()
+            if seat01=='6':
+                seat.seat_state_06 = "seat"
+                seat.save()
+            if seat01=='7':
+                seat.seat_state_07 = "seat"
+                seat.save()
+            if seat01=='8':
+                seat.seat_state_08 = "seat"
+                seat.save()
+            if seat01=='9':
+                seat.seat_state_09 = "seat"
+                seat.save()
+            if seat01=='10':
+                seat.seat_state_10 = "seat"
+                seat.save()
+            if seat01=='11':
+                seat.seat_state_11 = "seat"
+                seat.save()
+            if seat01=='12':
+                seat.seat_state_12 = "seat"
+                seat.save()
+            if seat01=='13':
+                seat.seat_state_13 = "seat"
+                seat.save()
+            if seat01=='14':
+                seat.seat_state_14 = "seat"
+                seat.save()
+            if seat01=='15':
+                seat.seat_state_15 = "seat"
+                seat.save()
+            if seat01=='16':
+                seat.seat_state_16 = "seat"
+                seat.save()
+            if seat01=='17':
+                seat.seat_state_17 = "seat"
+                seat.save()
+            if seat01=='18':
+                seat.seat_state_18 = "seat"
+                seat.save()
+            if seat01=='19':
+                seat.seat_state_19 = "seat"
+                seat.save()
+            if seat01=='20':
+                seat.seat_state_20 = "seat"
+                seat.save()
+            if seat01=='21':
+                seat.seat_state_21 = "seat"
+                seat.save()
+            if seat01=='22':
+                seat.seat_state_22 = "seat"
+                seat.save()
+            if seat01=='23':
+                seat.seat_state_23 = "seat"
+                seat.save()
+            if seat01=='24':
+                seat.seat_state_24 = "seat"
+                seat.save()
+            if seat01=='25':
+                seat.seat_state_25 = "seat"
+                seat.save()
+            if seat01=='26':
+                seat.seat_state_26 = "seat"
+                seat.save()
+            if seat01=='27':
+                seat.seat_state_27 = "seat"
+                seat.save()
+            if seat01=='28':
+                seat.seat_state_28 = "seat"
+                seat.save()
+            if seat01=='29':
+                seat.seat_state_29 = "seat"
+                seat.save()
+            if seat01=='30':
+                seat.seat_state_30 = "seat"
+                seat.save()
+            if seat01=='31':
+                seat.seat_state_31 = "seat"
+                seat.save()
+            if seat01=='32':
+                seat.seat_state_32 = "seat"
+                seat.save()
+            if seat01=='33':
+                seat.seat_state_33 = "seat"
+                seat.save()
+            if seat01=='34':
+                seat.seat_state_34 = "seat"
+                seat.save()
+            if seat01=='35':
+                seat.seat_state_35 = "seat"
+                seat.save()
+            if seat01=='36':
+                seat.seat_state_36 = "seat"
+                seat.save()
+            if seat01=='37':
+                seat.seat_state_37 = "seat"
+                seat.save()
+            if seat01=='38':
+                seat.seat_state_38 = "seat"
+                seat.save()
+            if seat01=='39':
+                seat.seat_state_39 = "seat"
+                seat.save()
+            if seat01=='40':
+                seat.seat_state_40 = "seat"
+                seat.save()
+            if seat01=='41':
+                seat.seat_state_41 = "seat"
+                seat.save()
+            if seat01=='42':
+                seat.seat_state_42 = "seat"
+                seat.save()
+            if seat01=='43':
+                seat.seat_state_43 = "seat"
+                seat.save()
+            if seat01=='44':
+                seat.seat_state_44 = "seat"
+                seat.save()
+            if seat01=='45':
+                seat.seat_state_45 = "seat"
+                seat.save()
+            if seat01=='46':
+                seat.seat_state_46 = "seat"
+                seat.save()
+            if seat01=='47':
+                seat.seat_state_47 = "seat"
+                seat.save()
+            if seat01=='48':
+                seat.seat_state_48 = "seat"
+                seat.save()
+        messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration for seats: %s' % str(saved_seats) )
+        return redirect('home')
+    if(ticket.should_booking_be_deleted()):
+        ticket.delete()
+    context={'allowed_seats':allowed_seats,'saved_seats':saved_seats,'seats':chosen_seats,'allow_pay':allow_payment,'range': range(total_ticket_for_booking),'ticket':ticket,'qnty':total_ticket_for_booking,'seat_left': seats_remaining,'expiry':expiry, 'expiryt':expiry_time,'seat':seat}
+    return render(request, 'ces/seat.html',context)
+
+@login_required
+def pay(request, key):
+    ticket = get_object_or_404(Tickets,pk=key)
+    if(ticket.should_booking_be_deleted()):
+        ticket.delete()
+    if request.method == "POST":
         if request.POST.get('cancel'):
             showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
             showtoedit.booked_seats-=ticket.total_tickets()
             showtoedit.save()
-            Tickets.objects.get(pk=ticket.pk).delete()
-            for seat01 in saved_seats:
+            seatstr = ticket.seat_data.split()
+            seat=Seat.objects.get(show__pk=ticket.show.pk)
+            for seat01 in seatstr:
                 if seat01=='1':
                     seat.seat_state_01 = "seat"
                     seat.save()
@@ -739,23 +901,6 @@ def seatselection(request, key):
                 if seat01=='48':
                     seat.seat_state_48 = "seat"
                     seat.save()
-                messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration for seats: %s' % str(saved_seats) )
-                return redirect('home')
-    if(ticket.should_booking_be_deleted()):
-        ticket.delete()
-    context={'allowed_seats':allowed_seats,'saved_seats':saved_seats,'seats':chosen_seats,'allow_pay':allow_payment,'range': range(total_ticket_for_booking),'ticket':ticket,'qnty':total_ticket_for_booking,'seat_left': seats_remaining,'expiry':expiry, 'expiryt':expiry_time,'seat':seat}
-    return render(request, 'ces/seat.html',context)
-
-@login_required
-def pay(request, key):
-    ticket = get_object_or_404(Tickets,pk=key)
-    if(ticket.should_booking_be_deleted()):
-        ticket.delete()
-    if request.method == "POST":
-        if request.POST.get('cancel'):
-            showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
-            showtoedit.booked_seats-=ticket.total_tickets()
-            showtoedit.save()
             Tickets.objects.get(pk=ticket.pk).delete()
             messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration')
             return redirect('home')
@@ -800,6 +945,153 @@ def pay_saved(request,key):
             showtoedit = ScheduleMovie.objects.get(pk=ticket.show.pk)
             showtoedit.booked_seats-=ticket.total_tickets()
             showtoedit.save()
+            seatstr = ticket.seat_data.split()
+            seat=Seat.objects.get(show__pk=ticket.show.pk)
+            for seat01 in seatstr:
+                if seat01=='1':
+                    seat.seat_state_01 = "seat"
+                    seat.save()
+                if seat01=='2':
+                    seat.seat_state_02 = "seat"
+                    seat.save()
+                if seat01=='3':
+                    seat.seat_state_03 = "seat"
+                    seat.save()
+                if seat01=='4':
+                    seat.seat_state_04 = "seat"
+                    seat.save()
+                if seat01=='5':
+                    seat.seat_state_05 = "seat"
+                    seat.save()
+                if seat01=='6':
+                    seat.seat_state_06 = "seat"
+                    seat.save()
+                if seat01=='7':
+                    seat.seat_state_07 = "seat"
+                    seat.save()
+                if seat01=='8':
+                    seat.seat_state_08 = "seat"
+                    seat.save()
+                if seat01=='9':
+                    seat.seat_state_09 = "seat"
+                    seat.save()
+                if seat01=='10':
+                    seat.seat_state_10 = "seat"
+                    seat.save()
+                if seat01=='11':
+                    seat.seat_state_11 = "seat"
+                    seat.save()
+                if seat01=='12':
+                    seat.seat_state_12 = "seat"
+                    seat.save()
+                if seat01=='13':
+                    seat.seat_state_13 = "seat"
+                    seat.save()
+                if seat01=='14':
+                    seat.seat_state_14 = "seat"
+                    seat.save()
+                if seat01=='15':
+                    seat.seat_state_15 = "seat"
+                    seat.save()
+                if seat01=='16':
+                    seat.seat_state_16 = "seat"
+                    seat.save()
+                if seat01=='17':
+                    seat.seat_state_17 = "seat"
+                    seat.save()
+                if seat01=='18':
+                    seat.seat_state_18 = "seat"
+                    seat.save()
+                if seat01=='19':
+                    seat.seat_state_19 = "seat"
+                    seat.save()
+                if seat01=='20':
+                    seat.seat_state_20 = "seat"
+                    seat.save()
+                if seat01=='21':
+                    seat.seat_state_21 = "seat"
+                    seat.save()
+                if seat01=='22':
+                    seat.seat_state_22 = "seat"
+                    seat.save()
+                if seat01=='23':
+                    seat.seat_state_23 = "seat"
+                    seat.save()
+                if seat01=='24':
+                    seat.seat_state_24 = "seat"
+                    seat.save()
+                if seat01=='25':
+                    seat.seat_state_25 = "seat"
+                    seat.save()
+                if seat01=='26':
+                    seat.seat_state_26 = "seat"
+                    seat.save()
+                if seat01=='27':
+                    seat.seat_state_27 = "seat"
+                    seat.save()
+                if seat01=='28':
+                    seat.seat_state_28 = "seat"
+                    seat.save()
+                if seat01=='29':
+                    seat.seat_state_29 = "seat"
+                    seat.save()
+                if seat01=='30':
+                    seat.seat_state_30 = "seat"
+                    seat.save()
+                if seat01=='31':
+                    seat.seat_state_31 = "seat"
+                    seat.save()
+                if seat01=='32':
+                    seat.seat_state_32 = "seat"
+                    seat.save()
+                if seat01=='33':
+                    seat.seat_state_33 = "seat"
+                    seat.save()
+                if seat01=='34':
+                    seat.seat_state_34 = "seat"
+                    seat.save()
+                if seat01=='35':
+                    seat.seat_state_35 = "seat"
+                    seat.save()
+                if seat01=='36':
+                    seat.seat_state_36 = "seat"
+                    seat.save()
+                if seat01=='37':
+                    seat.seat_state_37 = "seat"
+                    seat.save()
+                if seat01=='38':
+                    seat.seat_state_38 = "seat"
+                    seat.save()
+                if seat01=='39':
+                    seat.seat_state_39 = "seat"
+                    seat.save()
+                if seat01=='40':
+                    seat.seat_state_40 = "seat"
+                    seat.save()
+                if seat01=='41':
+                    seat.seat_state_41 = "seat"
+                    seat.save()
+                if seat01=='42':
+                    seat.seat_state_42 = "seat"
+                    seat.save()
+                if seat01=='43':
+                    seat.seat_state_43 = "seat"
+                    seat.save()
+                if seat01=='44':
+                    seat.seat_state_44 = "seat"
+                    seat.save()
+                if seat01=='45':
+                    seat.seat_state_45 = "seat"
+                    seat.save()
+                if seat01=='46':
+                    seat.seat_state_46 = "seat"
+                    seat.save()
+                if seat01=='47':
+                    seat.seat_state_47 = "seat"
+                    seat.save()
+                if seat01=='48':
+                    seat.seat_state_48 = "seat"
+                    seat.save()
             Tickets.objects.get(pk=ticket.pk).delete()
             messages.add_message(request,messages.SUCCESS, f'Cancelled ticket registration')
             return redirect('home')
