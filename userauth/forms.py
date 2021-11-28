@@ -18,3 +18,7 @@ class MovieSearchForm(forms.ModelForm):
         }
 class PromotionForm(forms.Form):
     promo_code = forms.CharField(label='PromoCode', max_length=100)
+class NewCardForm(forms.Form):
+    lname=forms.CharField(max_length=16,min_length=16)
+    expiry=forms.CharField(max_length=5,min_length=5)
+    cvv=forms.CharField(max_length=9)

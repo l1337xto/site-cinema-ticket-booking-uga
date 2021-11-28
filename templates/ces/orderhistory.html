@@ -1,0 +1,23 @@
+{% extends '_partials/base.html' %}{% load static %}
+{% block title %}
+Order History for {{request.user.username}}
+{% endblock %}
+{% block content%}
+<main>
+    <link rel="stylesheet" href="{% static 'css/orderhistory.css' %}">
+    <h2 style="font-size: 36px;">Order History</h2>
+    {% for s in r %}
+    <div id="row">
+        <img src="{{ s.tickets.show.movie.thumbnail.url }}">
+        <h1>{{s.tickets.show.movie.title}}</h1>
+        <div id="orderinfo">
+            <p>Date: {{s.tickets.show.PlayingOn}}</p>
+            <p>Time: {{s.tickets.show.MovieTime}}</p>
+            <p>Seat No: {{s.tickets.seat_data}}</p>
+            <p>Booking Code: {{s.bookingID}}</p>
+            <p>Ticket Cost: ${{s.total}}</p>
+        </div>
+    </div>
+    {% endfor%}
+</main>
+{% endblock %}

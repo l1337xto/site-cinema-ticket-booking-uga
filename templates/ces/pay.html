@@ -9,7 +9,8 @@ Ticket Payments for {{user.username}}
 <div class="ui relaxed grid">
     <div class="three column row">
       <div class="column">
-        {% if user.card_no %} <a href="">
+        {% if user.card_no %} 
+        <a href="{% url 'order' ticket.pk %}">
         <div class="ui two column grid">
             <div class="column" style="background-color: #349239;color: #FFFFFF;">
                 {%if user.card_no %}
@@ -26,7 +27,8 @@ Ticket Payments for {{user.username}}
         {% endif %}
       </div>
       <div class="column">
-        {% if user.card_no2 %} <a href="">
+        {% if user.card_no2 %} 
+        <a href="{% url 'order' ticket.pk %}">
         <div class="ui two column grid" >
           <div class="column" style="background-color: #349239;color: #FFFFFF;">
               {%if user.card_no2 %}
@@ -38,12 +40,12 @@ Ticket Payments for {{user.username}}
             <div class="column"></div>
           </div>
         </div>
-    </a>
+        </a>
         {%endif%}
       </div>
       <div class="column">
         {% if user.card_no3 %}
-        <a href="">
+        <a href="{% url 'order' ticket.pk %}">
         <div class="ui two column grid">
           <div class="column" style="background-color: #349239;color: #FFFFFF;">
               {%if user.card_no3 %}
@@ -55,7 +57,7 @@ Ticket Payments for {{user.username}}
             <div class="column"></div>
           </div>
         </div>
-    </a>
+        </a>
         {% endif %}
       </div>
     </div>
@@ -65,18 +67,19 @@ Ticket Payments for {{user.username}}
 justify-content: center;font-family: 'Lato', 'sans-serif';margin-left: 60px; margin-top: 4em;">
     <h1 style="text-align: center; padding-bottom: 1em;">Pay with new Card</h1>
     <fieldset>
-        <form>
+        <form method="post" action={% url 'order' ticket.pk %}>
+          {% csrf_token%}
             <h2><p style="color:white;">Payment Information</p></h2>
             <div>
-                <input type="text" name="lname" placeholder="Credit Card Number" required>*16 digit card number
+                <input type="number"  name="lname" placeholder="Credit Card Number" minlength="16" required>*16 digit card number
             </div>
             <div>
-                <input type="text" name="expiry" placeholder="Expiry" required>*MM/YY
+                <input type="number" name="expiry" placeholder="Expiry" required>*MM/YY
             </div>
             <div>
                 <input type="password" name="cvv" placeholder="CVV" required>Security Code
             </div>
-            <a style="color:rgb(2, 40, 255); margin-left: 2em;" href="" class="button button2"><h3>Pay</h3></a>
+            <input type="submit" class="button button2"></input>
         </form>
     </fieldset>    
 </div>
@@ -84,14 +87,12 @@ justify-content: center;font-family: 'Lato', 'sans-serif';margin-left: 60px; mar
 </div>
 <form method="post">
   {% csrf_token%}
-<input style="color: white;
-background-color: black;
-font-family: Nunito;
-border-radius: 25px;
-padding: 7px;
-font-size: 1em;
-padding-left: 2em;
-padding-right: 2em; margin-left: 70px; margin-top: 20px; margin-bottom: 20px;" type="submit" name="cancel"></input></form>
+  Cancel?
+<input style="color: white;background-color: black;font-family: Nunito;border-radius: 25px;padding: 7px;font-size: 1em;
+padding-right: 2em; margin-top: 20px; margin-bottom: 20px;" type="submit" name="cancel"></input></form>
+<div style="position: absolute;top:160px;left:600px; background-color: rgba(165, 42, 42, 0.425);">
+<h1>Payment of ${{pay}}</h1>
+</div>
 {% endblock %}
 
 

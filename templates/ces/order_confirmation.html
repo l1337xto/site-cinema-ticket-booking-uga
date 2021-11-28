@@ -1,0 +1,22 @@
+{% extends '_partials/base.html' %}{% load static %}
+{% block title %}
+Ticket Confirmation for {{request.user.username}}
+{% endblock %}
+
+{% block content %}
+        <main>
+            <!-- Body of the page -->
+            <link rel="stylesheet" href="{% static 'css/orderconfirmation.css' %}">
+            <div id="userdetails">
+                <h1>Thank you for booking with us</h1>
+                <h3 style="color: darkgray;">Your Booking confirmation number is #{{booked.bookingID}}</h3>
+                <h3 style="color: coral;">Movie Title: {{booked.tickets.show.movie.title}}</h3>
+                <h3 style="color: chartreuse;">Date/Time: {{booked.tickets.show.PlayingOn}} @ {{booked.tickets.show.MovieTime}}</h3>
+                <h3 style="color: chartreuse;">Seats: {{booked.tickets.seat_data}}</h3>
+                <h3>Total Cost: ${{booked.total}}</h3>
+                <h3>A copy of your ticket is sent to <p style="color:darkcyan;">{{request.user.email}}</p></h3>
+                <a id="historybutton" href="{% url 'home' %}">Home</a>
+            </div>
+            
+        </main>
+{%endblock%}

@@ -85,7 +85,9 @@ class TicketAdmin(admin.ModelAdmin):
         if every.should_booking_be_deleted():
             Tickets.objects.get(pk=every.pk).delete()
     actions = [auto_delete_expired_tickets]
-
+class BookingAdmin(admin.ModelAdmin):
+    model=Bookings
+    readonly_fields=('tickets','total')
 admin.site.register(User,UserAdmin)
 admin.site.register(Movies,MovieAdmin)
 admin.site.register(Promotions, PromotionsAdmin)
@@ -94,3 +96,4 @@ admin.site.register(MovieShowTime)
 admin.site.register(ShowRoom,ShowroomAdmin)
 admin.site.register(Tickets, TicketAdmin)
 admin.site.register(Seat,SeatAdmin)
+admin.site.register(Bookings,BookingAdmin)

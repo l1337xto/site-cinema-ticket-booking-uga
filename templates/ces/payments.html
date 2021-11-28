@@ -8,20 +8,11 @@
                 <fieldset style="padding-bottom: 250px;">
                     <form>
                         <h2><p style="color:white;">Payment Information</p></h2>
-
+                            {% if not payamount %}
+                            <h1>Please enter your Promotional code </h1><p style="color: darkseagreen; text-align:left">(or enter CUSTMR4EV for 5% discount)</p>
+                            {% else %}
                         <a href="{% url 'pay_saved' ticket.pk %}" class="button button1">Pay by Using your Saved Card or with a New Card</a>
-                        
-                        <!-- <h2>OR</h2>
-                        <div>
-                            <input type="text" name="lname" placeholder="Credit Card Number">
-                        </div>
-                        <div>
-                            <input type="text" name="expiry" placeholder="Expiry">
-                        </div>
-                        <div>
-                            <input type="password" name="cvv" placeholder="CVV">
-                        </div>
-                        <a href="" class="button button2">Pay</a> -->
+                            {% endif %}
                     </form>
                 </fieldset>
 
@@ -32,10 +23,10 @@
                     </form>
                 </div>
                     <div style="position: absolute; right:80px; top: 400px">
-                        {% if not off%}
+                        {% if payamount %}
+                        <h1>Total: ${{payamount}}</h1>
+                        {% else %}
                         <h1>Total: ${{ticket.order_total|floatformat:2}}</h1>
-                        {%else%}
-                        <h1>Total: ${{off}}</h1>
                         {%endif%}
                     </div>
             </div>
@@ -58,7 +49,7 @@
             
         </main>
     </body>
-    <div style="position: absolute; top: 180px;right:600px; background-color: rgba(0, 153, 255, 0.452); width: 250px; height: 100px;">
+    <div style="position: absolute; top: 180px;right:600px; background-color: rgba(0, 153, 255, 0.274); width: 250px; height: 300px;">
         <div>
             {%if form %}
             <h3>Have a promo code?</h3>

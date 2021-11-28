@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.db.models.fields.related import ManyToManyField #Encrypting data
@@ -179,7 +180,7 @@ class Tickets(models.Model):
     time_created = models.DateTimeField(auto_now_add=True,auto_now=False)
     seat_data = models.TextField(blank=True, null=True)
     def __str__(self):
-        return self.user.username
+        return f'%s %s %s on %s at %s' % (str(self.time_created), self.user.email,self.show.movie.title,self.show.PlayingOn,self.show.MovieTime)
     def total_tickets(self):
         return self.ticket_child+self.ticket_senior+self.ticket_adult
     def order_total(self):
@@ -196,8 +197,14 @@ class Tickets(models.Model):
         discount = promo.get_discount()
         total*=discount
         return round(total,2)
-"""
+class payamount(models.Model):
+    ticket=models.OneToOneField(Tickets,on_delete=models.CASCADE)
+    ticket_cost=models.FloatField(default=0)
+    def __str__(self):
+        return str(self.ticket_cost)
 class Bookings(models.Model):
     tickets = models.OneToOneField(Tickets,on_delete=models.CASCADE)
-    total = models.IntegerField()
-"""
+    total = models.FloatField()
+    bookingID = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    def __str__(self):
+        return f'%s on %s at %s for %s' % (self.tickets.show.movie.title,self.tickets.show.PlayingOn,self.tickets.show.MovieTime, self.tickets.user.email)

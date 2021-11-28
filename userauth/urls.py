@@ -19,6 +19,8 @@ urlpatterns = [
     path('seatselection/<int:key>', views.seatselection, name='seat'),
     path('pay/<int:key>',views.pay,name='pay'),
     path('pay_saved/<int:key>',views.pay_saved,name='pay_saved'),
+    path('order_done/<int:key>',views.order_confirmation,name='order'),
+    path('order_history',views.order_history,name='order_history'),
     ###########Password Reset#########
     path('reset_password',auth_views.PasswordResetView.as_view(template_name="userauth/password_reset.html"),name="reset_password"),
     path('reset_password_sent',auth_views.PasswordResetDoneView.as_view(template_name="userauth/password_reset_sent.html"),name="password_reset_done"),

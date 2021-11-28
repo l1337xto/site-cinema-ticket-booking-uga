@@ -275,7 +275,7 @@
     {% endfor %}
   {% endif %}
    <div>
-    <form method="post">
+    <form method="post" action="{%url 'home'%}">
       {% csrf_token %}
       <p>Cancel? --> <input type="submit" name="cancel"></input></p>
     </form>

@@ -1,0 +1,12 @@
+{% autoescape off%}
+Hi {{user.username}},
+Thank you for booking with us
+Your Booking confirmation number is #{{booked.bookingID}}
+Movie Title: {{booked.tickets.show.movie.title}}
+Date/Time: {{booked.tickets.show.PlayingOn}} @ {{booked.tickets.show.MovieTime}}
+Seats: {{booked.tickets.seat_data}}
+Total Cost: ${{booked.total}}
+
+See you at our theatres!
+
+{%endautoescape%}

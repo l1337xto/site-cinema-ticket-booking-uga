@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Comfortaa:wght@300&family=Pacifico&display=swap&family=Nunito&display=swap');
+
+body{
+    font-family: Nunito;
+    border: 1px solid black;
+    padding:0em;
+    margin:0em;
+    height:auto;
+}
+
+header{
+    display: block;
+    background-color:black;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+header h5{
+    text-align: center;
+    color: white;
+    font-size: 100%;
+    font-family: Nunito;
+    padding:0em;
+    margin: 0em;
+}
+
+
+/*************** *******/
+
+/* STYLE OF MENU */
+
+/*************** *******/
+
+
+#mainlist{
+    color:black;
+    margin-top: 1em;
+    border: none;
+}
+
+#sideicon {
+    margin-top: 2em;
+    border: none;
+    float:right;
+    margin-left:2em;
+}
+
+#search {
+    margin-top: 2.7em;
+    float:right;
+    border: 1px solid lightgray;
+    padding: 0.5em;
+}
+
+#searchbutton {
+    margin-top: 2.7em;
+    float:right;
+    border: 1px solid lightgray;
+    background-color: lightgray;
+}
+
+.menu {
+    height: 65px;
+    padding-left: 5em;
+    padding-right: 5em;
+    position: relative;
+    z-index: 1;
+}
+
+#logo {
+    max-width: 60px;
+    padding: 1em;
+    margin-right: 23em;
+    float:left;
+    height:auto;
+}
+
+#icon {
+    max-width: 25px;
+}
+
+.menu ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.menu li{
+    width:120px;
+    margin:0;
+    text-align:center;
+    float: left;
+}
+
+.menu a {
+    font-weight: 600;
+    font-size: 100%;
+    color:black;
+    background-color: white;
+    border: 2px solid black;
+    display:block;
+    padding:10px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.menu a:hover {
+    background-color: #AFAFAF;
+}
+
+.one {
+    position:relative;
+}
+
+.two {
+    padding:0;
+    margin:0;
+    display: none;
+    position:absolute;
+}
+.two li {
+    clear:left;
+}
+
+.one li:hover .two {
+    display:block;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+
+/*************** *******/
+
+/* STYLE OF BODY OF PAGE */
+
+/*************** *******/
+
+main{
+    border: 1px solid black;
+    padding-top:0;
+    padding-bottom: 2em;
+    background-color:black;
+}
+
+h2 {
+    color:white;
+    font-family: Chewy;
+    text-align: center;
+}
+
+#row {
+    border: 1px solid white;
+    margin-left: 4em;
+    margin-top: 2em;
+    padding: 1em;
+    width: 90em;
+    height: 20em;
+}
+
+img {
+    max-height: 160px;
+    float:left;
+}
+
+h1 {
+    color:white;
+    text-align: center;
+    font-family: Chewy;
+    font-size: 3em;
+    margin-left: 2em;
+    margin-top: 90px;
+    width: 15em;
+    float:left;
+}
+
+#orderinfo {
+    float:left;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+p {
+    color:white;
+}
+/*************** *******/
+
+/* STYLE OF FOOTER OF PAGE */
+
+/*************** *******/
+
+p {
+    text-align: center;
+    margin-top:5px;
+}
+
+footer{
+    display:block;
+    border: 1px solid black;
+    padding-top:10px;
+    background-color:black;
+}
+
+span{
+    color:white;
+    font-size: 13px;
+}
