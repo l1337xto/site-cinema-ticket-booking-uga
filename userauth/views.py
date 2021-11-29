@@ -297,7 +297,8 @@ def sendPromo(request, promo_id):
     promo = get_object_or_404(Promotions,pk=promo_id)
     code = promo.promo_code
     valid = promo.promo_validity
-    contextp = {'promotion_name': code, 'validity':valid}
+    less = promo.less
+    contextp = {'promotion_name': code, 'validity':valid,'less':less}
     domain_name = get_current_site(request)
     email_subject = 'You have a new promotion from CES'
     email_body = render_to_string('ces/promo_mail.html',contextp)
